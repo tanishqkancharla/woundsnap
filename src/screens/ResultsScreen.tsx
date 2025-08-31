@@ -232,6 +232,61 @@ function ResultsScreen() {
 							</div>
 						)}
 
+						{/* Keragon Workflow Results */}
+						{result.finalData?.workflowResults && (
+							<div className="workflow-section">
+								<h3>Care Team Workflows</h3>
+								<div className="workflow-info">
+									<div className="workflow-header">
+										<span className={`workflow-type ${result.finalData.workflowResults.workflowType}`}>
+											{result.finalData.workflowResults.workflowType === 'critical-risk' ? 
+												'🚨 Critical Risk Workflow' : 
+												'📋 Standard Care Workflow'
+											}
+										</span>
+										<span className="infection-risk">
+											Infection Risk: {result.finalData.workflowResults.infectionRisk}%
+										</span>
+									</div>
+									
+									{result.finalData.workflowResults.workflowResult && (
+										<div className="workflow-actions">
+											<p>✅ Workflow triggered successfully</p>
+											<div className="actions-grid">
+												<div className="action-item">
+													<strong>SMS Notifications:</strong> 
+													{result.finalData.workflowResults.workflowResult.actions.smsNotifications}
+												</div>
+												<div className="action-item">
+													<strong>Email Notifications:</strong>
+													{result.finalData.workflowResults.workflowResult.actions.emailNotifications}
+												</div>
+												<div className="action-item">
+													<strong>Appointments Scheduled:</strong>
+													{result.finalData.workflowResults.workflowResult.actions.appointmentsScheduled}
+												</div>
+												<div className="action-item">
+													<strong>Tasks Created:</strong>
+													{result.finalData.workflowResults.workflowResult.actions.tasksCreated}
+												</div>
+											</div>
+											
+											{result.finalData.workflowResults.riskFactors && result.finalData.workflowResults.riskFactors.length > 0 && (
+												<div className="risk-factors">
+													<strong>Risk Factors Identified:</strong>
+													<ul>
+														{result.finalData.workflowResults.riskFactors.map((factor, index) => (
+															<li key={index}>{factor}</li>
+														))}
+													</ul>
+												</div>
+											)}
+										</div>
+									)}
+								</div>
+							</div>
+						)}
+
 						{/* Workflow Steps Summary */}
 						<div className="workflow-steps">
 							<h3>Process Summary</h3>

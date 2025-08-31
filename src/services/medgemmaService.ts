@@ -16,6 +16,9 @@ export interface WoundAnalysisResponse {
 	};
 	recommendations?: string[];
 	confidence?: number;
+	infectionRisk?: number; // Percentage 0-100
+	riskFactors?: string[];
+	healingStage?: string;
 }
 
 class MedGemmaService {
@@ -49,24 +52,55 @@ class MedGemmaService {
 		// Simulate API delay
 		await new Promise(resolve => setTimeout(resolve, 2000));
 
-		// Generate mock analysis based on image data (basic simulation)
-		const mockAnalysis: WoundAnalysisResponse = {
-			analysisText: "Stage 2 pressure ulcer identified in the sacral region. The wound measures approximately 2.3 cm in length and 1.8 cm in width. Partial thickness skin loss involving epidermis and dermis. Wound bed appears clean with granulation tissue present. No signs of infection observed. Surrounding skin shows mild erythema consistent with pressure-related tissue damage.",
-			woundType: "Pressure Ulcer",
-			severity: "Stage 2",
-			measurements: {
-				length: "2.3 cm",
-				width: "1.8 cm",
-				depth: "Partial thickness"
+		// Generate different risk scenarios for testing
+		const scenarios = [
+			{
+				// High-risk scenario for testing critical workflow
+				analysisText: "Stage 3 pressure ulcer with concerning features identified in the sacral region. The wound measures approximately 4.2 cm in length and 3.5 cm in width with full thickness tissue loss. Wound bed shows areas of necrotic tissue with purulent drainage. Surrounding skin demonstrates significant erythema extending beyond wound margins with warmth and induration. Signs suggestive of developing infection requiring immediate clinical attention.",
+				woundType: "Pressure Ulcer",
+				severity: "Stage 3",
+				infectionRisk: 85, // High risk triggers critical workflow
+				riskFactors: ["Purulent drainage", "Extensive erythema", "Tissue necrosis", "Wound enlargement"],
+				healingStage: "Deteriorating",
+				confidence: 0.92
 			},
-			recommendations: [
+			{
+				// Low-risk scenario for testing standard workflow  
+				analysisText: "Stage 2 pressure ulcer identified in the sacral region. The wound measures approximately 2.3 cm in length and 1.8 cm in width. Partial thickness skin loss involving epidermis and dermis. Wound bed appears clean with granulation tissue present. No signs of infection observed. Surrounding skin shows mild erythema consistent with pressure-related tissue damage.",
+				woundType: "Pressure Ulcer", 
+				severity: "Stage 2",
+				infectionRisk: 25, // Low risk triggers standard workflow
+				riskFactors: ["Pressure-related damage"],
+				healingStage: "Healing",
+				confidence: 0.85
+			}
+		];
+
+		// For testing purposes, alternate between scenarios or use a deterministic approach
+		// This ensures we can test both high and low risk workflows
+		const useHighRisk = Date.now() % 2 === 0; // Deterministic based on current time
+		const scenario = useHighRisk ? scenarios[0] : scenarios[1];
+
+		const mockAnalysis: WoundAnalysisResponse = {
+			...scenario,
+			measurements: {
+				length: scenario.severity === "Stage 3" ? "4.2 cm" : "2.3 cm",
+				width: scenario.severity === "Stage 3" ? "3.5 cm" : "1.8 cm",
+				depth: scenario.severity === "Stage 3" ? "Full thickness" : "Partial thickness"
+			},
+			recommendations: scenario.infectionRisk > 70 ? [
+				"URGENT: Immediate clinical evaluation required",
+				"Culture wound drainage for bacterial identification",
+				"Consider antibiotic therapy",
+				"Debride necrotic tissue",
+				"Implement infection control measures"
+			] : [
 				"Pressure redistribution with appropriate support surface",
-				"Regular repositioning every 2 hours",
+				"Regular repositioning every 2 hours", 
 				"Keep wound clean and moist",
 				"Monitor for signs of infection",
 				"Document healing progress with photographs"
-			],
-			confidence: 0.85
+			]
 		};
 
 		return mockAnalysis;

@@ -37,7 +37,8 @@ class WoundWorkflowService {
 		"Photo Processing",
 		"AI Analysis (MedGemma)", 
 		"FHIR Conversion (Phenoml)",
-		"EHR Storage (Canvas)"
+		"EHR Storage (Canvas)",
+		"Workflow Automation (Keragon)"
 	];
 
 	/**
@@ -88,6 +89,15 @@ class WoundWorkflowService {
 				throw new Error(storageStep.error);
 			}
 
+			// Step 5: Trigger Keragon Workflows
+			this.updateProgress(onProgress, 5, "Workflow Automation (Keragon)", "Triggering care team workflows...");
+			const workflowStep = await this.triggerKeragonWorkflows(analysisStep.data, patientId);
+			steps.push(workflowStep);
+			
+			if (!workflowStep.success) {
+				console.warn("Keragon workflow failed, but continuing:", workflowStep.error);
+			}
+
 			const totalDuration = Date.now() - startTime;
 
 			return {
@@ -97,7 +107,8 @@ class WoundWorkflowService {
 					analysisText: analysisStep.data.analysisText,
 					medgemmaAnalysis: analysisStep.data,
 					fhirResources: fhirStep.data,
-					canvasIds: storageStep.data
+					canvasIds: storageStep.data,
+					workflowResults: workflowStep.data
 				},
 				totalDuration
 			};
@@ -239,6 +250,83 @@ class WoundWorkflowService {
 				error: error instanceof Error ? error.message : "Canvas storage failed",
 				duration: Date.now() - stepStart
 			};
+		}
+	}
+
+	/**
+	 * Step 5: Trigger Keragon Workflows Based on Risk Assessment
+	 */
+	private async triggerKeragonWorkflows(medgemmaData: any, patientId: string): Promise<WorkflowStepResult> {
+		const stepStart = Date.now();
+		
+		try {
+			// Extract risk assessment from MedGemma analysis
+			const infectionRisk = medgemmaData.infectionRisk || 0;
+			const severity = medgemmaData.severity || "Unknown";
+			const riskFactors = medgemmaData.riskFactors || [];
+
+			// Create wound analysis data for Keragon
+			const woundAnalysisData: WoundAnalysisData = {
+				patientId,
+				woundId: `wound_${Date.now()}`,
+				riskLevel: this.determineRiskLevel(infectionRisk, severity),
+				infectionRisk,
+				healingStage: medgemmaData.healingStage || "Assessment Complete",
+				measurements: {
+					length: parseFloat(medgemmaData.measurements?.length?.replace(/[^\d.]/g, '') || '0'),
+					width: parseFloat(medgemmaData.measurements?.width?.replace(/[^\d.]/g, '') || '0'), 
+					depth: parseFloat(medgemmaData.measurements?.depth?.replace(/[^\d.]/g, '') || '0')
+				},
+				tissueTypes: [medgemmaData.woundType || "Unspecified"],
+				recommendations: medgemmaData.recommendations || [],
+				imageUrl: "data:image/*", // Placeholder
+				analysisTimestamp: new Date().toISOString()
+			};
+
+			// Determine workflow type based on infection risk threshold
+			let workflowResult;
+			if (infectionRisk > 70) {
+				console.log(`🚨 High infection risk detected (${infectionRisk}%) - triggering critical workflow`);
+				workflowResult = await keragonService.triggerCriticalRiskWorkflow(woundAnalysisData);
+			} else {
+				console.log(`📋 Standard infection risk (${infectionRisk}%) - triggering standard workflow`);
+				workflowResult = await keragonService.triggerStandardCareWorkflow(woundAnalysisData);
+			}
+
+			return {
+				step: "Workflow Automation (Keragon)",
+				success: true,
+				data: {
+					workflowType: infectionRisk > 70 ? 'critical-risk' : 'standard-care',
+					infectionRisk,
+					workflowResult,
+					riskFactors
+				},
+				duration: Date.now() - stepStart
+			};
+
+		} catch (error) {
+			return {
+				step: "Workflow Automation (Keragon)",
+				success: false,
+				error: error instanceof Error ? error.message : "Workflow automation failed",
+				duration: Date.now() - stepStart
+			};
+		}
+	}
+
+	/**
+	 * Determine risk level based on infection risk and severity
+	 */
+	private determineRiskLevel(infectionRisk: number, severity: string): 'low' | 'medium' | 'high' | 'critical' {
+		if (infectionRisk > 70 || severity.toLowerCase().includes('stage 3') || severity.toLowerCase().includes('stage 4')) {
+			return 'critical';
+		} else if (infectionRisk > 50 || severity.toLowerCase().includes('stage 2')) {
+			return 'high';
+		} else if (infectionRisk > 25) {
+			return 'medium';
+		} else {
+			return 'low';
 		}
 	}
 

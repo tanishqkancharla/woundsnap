@@ -2810,6 +2810,111 @@ color: #17a2b8;
 	color: #000000;
 }
 
+/* Keragon Workflow Section */
+.workflow-section {
+	background: white;
+	border: 1px solid #e9ecef;
+	border-radius: 16px;
+	padding: 2rem;
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+	margin-bottom: 1.5rem;
+}
+
+.workflow-section h3 {
+	color: #000000;
+	font-size: 1.3rem;
+	font-weight: 600;
+	margin: 0 0 1rem 0;
+}
+
+.workflow-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 1rem;
+	flex-wrap: wrap;
+	gap: 1rem;
+}
+
+.workflow-type {
+	font-weight: 600;
+	padding: 0.5rem 1rem;
+	border-radius: 20px;
+	font-size: 0.9rem;
+}
+
+.workflow-type.critical-risk {
+	background: #fee;
+	color: #c53030;
+	border: 1px solid #fed7d7;
+}
+
+.workflow-type.standard-care {
+	background: #e6fffa;
+	color: #17a2b8;
+	border: 1px solid #b2f5ea;
+}
+
+.infection-risk {
+	font-weight: 600;
+	color: #2c3e50;
+	background: #f8f9fa;
+	padding: 0.25rem 0.75rem;
+	border-radius: 15px;
+	font-size: 0.9rem;
+}
+
+.workflow-actions p {
+	color: #28a745;
+	font-weight: 600;
+	font-size: 1.1rem;
+	margin: 0 0 1rem 0;
+}
+
+.actions-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+	gap: 1rem;
+	margin-bottom: 1.5rem;
+}
+
+.action-item {
+	background: #f8f9fa;
+	padding: 0.75rem;
+	border-radius: 6px;
+	font-size: 0.95rem;
+	color: #333333;
+}
+
+.action-item strong {
+	color: #000000;
+	display: block;
+	margin-bottom: 0.25rem;
+}
+
+.risk-factors {
+	background: #fff5f5;
+	padding: 1rem;
+	border-radius: 6px;
+	border: 1px solid #fed7d7;
+}
+
+.risk-factors strong {
+	color: #c53030;
+	display: block;
+	margin-bottom: 0.5rem;
+}
+
+.risk-factors ul {
+	margin: 0;
+	padding-left: 1.5rem;
+}
+
+.risk-factors li {
+	color: #2c3e50;
+	margin-bottom: 0.25rem;
+}
+
 /* Workflow Steps */
 .workflow-steps {
 	background: white;
