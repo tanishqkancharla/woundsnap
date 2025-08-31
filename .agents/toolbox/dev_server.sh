@@ -11,7 +11,7 @@ case "$1" in
     start)
         echo "Starting development server..."
         
-        # Clean parcel cache
+        # Clean build cache
         if [ -d ".parcel-cache" ]; then
             echo "Removing .parcel-cache directory..."
             rm -rf .parcel-cache

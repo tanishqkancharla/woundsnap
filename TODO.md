@@ -61,7 +61,8 @@ Implement Woundsnap as detailed in the @docs/Hackathon/Woundsnap.md file.
       Status: Completed successfully. Redesigned Welcome, Login, and Photo Capture screens to match mockup designs with clean white backgrounds, teal branding, and simplified interfaces. All functionality preserved while achieving professional, minimal aesthetic. See docs/todos/design-cleanup.md
 - [x] Match dashboard aesthetic to match @docs/aesthetic.md
       Status: Completed successfully. Updated dashboard with proper teal primary button color (#17a2b8), improved typography with larger section headers (1.5rem), enhanced spacing (2.5rem between sections), and consistent line-heights following the aesthetic guide. All changes tested and verified. See docs/todos/dashboard-aesthetic.md
-- [ ] Migrate to Vite from Parcel
+- [x] Migrate to Vite from Parcel
+      Status: Completed successfully. Removed Parcel, installed Vite with React plugin, configured environment variables, updated scripts, and verified all functionality works. Build time improved to 370ms. See docs/todos/migrate-to-vite.md
 - [ ] Get a deploy out
 
 ## UI/UX Discrepancies Found (Screen Audit)
