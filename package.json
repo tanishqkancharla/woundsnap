@@ -1,9 +1,9 @@
 {
-	"name": "boilerplate",
+	"name": "woundsnap",
 	"version": "0.0.1",
-	"description": "Tanishq K's Boilerplate",
+	"description": "AI-powered wound care analysis application",
 	"scripts": {
-		"build": "parcel src/index.html",
+		"build": "parcel build src/index.html",
 		"dev": "parcel src/index.html",
 		"serve": "parcel serve dist",
 		"deploy": "npx vercel deploy",
@@ -12,12 +12,15 @@
 	"author": "Tanishq Kancharla",
 	"license": "MIT",
 	"devDependencies": {
+		"@playwright/test": "^1.55.0",
 		"@types/mocha": "^9.1.0",
 		"@types/node-fetch": "^2.6.1",
 		"@types/react": "^17.0.40",
 		"@types/react-dom": "^17.0.13",
+		"@types/react-router-dom": "^5.3.3",
 		"mocha": "^9.2.2",
 		"parcel": "^2.8.2",
+		"playwright": "^1.55.0",
 		"process": "^0.11.10",
 		"serve": "^13.0.2",
 		"tsx": "^3.12.2",
@@ -25,8 +28,11 @@
 		"vercel": "^24.0.0"
 	},
 	"dependencies": {
+		"axios": "^1.11.0",
 		"lodash": "^4.17.21",
 		"react": "^17.0.2",
-		"react-dom": "^17.0.2"
+		"react-dom": "^17.0.2",
+		"react-router-dom": "^6.30.1",
+		"react-webcam": "^7.2.0"
 	}
 }

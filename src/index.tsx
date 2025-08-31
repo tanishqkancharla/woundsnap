@@ -1,18 +1,16 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import App from "./App";
+import "./style.css";
 
 export function add(x: number, y: number) {
 	return x + y;
 }
 
-function Index() {
-	return <div>Hi! 2+2={add(2, 2)}</div>;
-}
-
 function run() {
 	const container = document.createElement("main");
 	document.body.appendChild(container);
-	ReactDOM.render(<Index />, container);
+	ReactDOM.render(<App />, container);
 }
 
 if (typeof window !== "undefined") {
