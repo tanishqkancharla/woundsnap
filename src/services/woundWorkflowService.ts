@@ -3,6 +3,7 @@
 import { medgemmaService, WoundAnalysisResponse } from './medgemmaService';
 import { phenomlService, PhenomlResponse } from './phenomlService';
 import { canvasService, CanvasResponse } from './canvasService';
+import { keragonService, WoundAnalysisData } from './keragonService';
 
 export interface WorkflowStepResult {
 	step: string;

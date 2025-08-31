@@ -33,8 +33,10 @@ Implement Woundsnap as detailed in the @docs/Hackathon/Woundsnap.md file.
 
 - [x] PhotoCapture → MedGemma → Phenoml → Canvas vertical slice
       Status: Completed successfully. Built complete end-to-end workflow with photo capture, AI analysis, FHIR conversion, and EHR storage. Includes progress tracking, error handling, and comprehensive results display. All services implemented with mock data for testing. See docs/todos/photocapture-medgemma-phenoml-canvas.md
-- [ ] Keragon workflow integration
-      Configure webhook-triggered workflows in Keragon platform for care team notifications and patient communication
+- [-] Keragon workflow integration
+      Status: Service implemented with mock workflows for demo. Requires manual configuration in Keragon web platform to set up live SMS/email notifications. See docs/todos/keragon-workflow-integration.md
+- [ ] Manual Keragon workflow configuration (requires human operator)
+      Login to Keragon platform and manually build 3 workflow templates using their visual editor: critical risk alerts, standard care communication, and follow-up reminders. Configure webhook endpoints and SMS/email providers.
 - [ ] Metriport patient context integration
       Single API call to fetch patient history and display under "Clinical Context"
 - [ ] eKare.ai basic analytics endpoint
