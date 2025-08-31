@@ -83,7 +83,7 @@ function Dashboard() {
 	}
 
 	return (
-		<div className="dashboard gradient-background">
+		<div className="dashboard">
 			<header className="dashboard-header">
 				<div className="header-content">
 					<div className="user-info">
