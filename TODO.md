@@ -77,8 +77,9 @@ Implement Woundsnap as detailed in the @docs/Hackathon/Woundsnap.md file.
 - [x] Add "Upload Photo" button below "Take Photo"
       Status: Already completed. Current implementation matches mobile mockup with Upload Photo button properly positioned below Take Photo button. No changes required. See docs/todos/photo-capture-upload-button.md
       Mockup: only take photo button / Implementation: has upload photo button
-- [ ] Use larger camera icon instead of small camera illustration
-      Mockup: large 3D camera render / Implementation: small flat camera icon
+- [x] Use larger camera icon instead of small camera illustration
+Status: Completed successfully. Replaced camera emoji with professional 3D-style SVG camera illustration matching mockup design. Includes responsive sizing, drop shadows, and hover effects while maintaining full functionality. See docs/todos/larger-camera-icon.md
+       Mockup: large 3D camera render / Implementation: detailed camera SVG illustration
 
 ### Wound Information Form Discrepancies
 

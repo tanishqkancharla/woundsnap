@@ -520,7 +520,7 @@ body {
 	}
 	
 	.camera-icon {
-		font-size: 5rem;
+		width: 100px;
 	}
 	
 	.photo-capture-title {
@@ -1413,8 +1413,21 @@ margin-bottom: 2rem;
 }
 
 .camera-icon {
-	font-size: 8rem;
-	color: #333333;
+	width: 160px;
+	height: auto;
+	filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+	transition: transform 0.2s ease;
+}
+
+.camera-icon:hover {
+	transform: scale(1.05);
+}
+
+/* Responsive sizing for mobile */
+@media (max-width: 768px) {
+	.camera-icon {
+		width: 120px;
+	}
 }
 
 .capture-instructions {

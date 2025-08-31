@@ -1,6 +1,7 @@
 import React, { useState, useRef, useCallback } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Webcam from "react-webcam";
+import CameraIcon from "../components/CameraIcon";
 
 function PhotoCapture() {
 	const [isCapturing, setIsCapturing] = useState(false);
@@ -93,7 +94,7 @@ function PhotoCapture() {
 				<h1 className="photo-capture-title">WoundSnap Lite</h1>
 				
 				<div className="camera-illustration">
-					<div className="camera-icon">📷</div>
+					<CameraIcon size={160} className="camera-icon" />
 				</div>
 				
 				<div className="capture-instructions">
