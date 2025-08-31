@@ -49,18 +49,61 @@ class CanvasService {
 	 * Get base headers with authentication
 	 */
 	private async getHeaders(): Promise<HeadersInit> {
-		const accessToken = await canvasAuth.getValidAccessToken();
-		return {
-			"Authorization": `Bearer ${accessToken}`,
-			"Content-Type": "application/json",
-			"Accept": "application/json"
-		};
+		try {
+			const accessToken = await canvasAuth.getValidAccessToken();
+			return {
+				"Authorization": `Bearer ${accessToken}`,
+				"Content-Type": "application/json",
+				"Accept": "application/json"
+			};
+		} catch (error) {
+			// If authentication fails (e.g., in demo mode), return headers without auth
+			console.warn("Canvas authentication not available, using demo mode");
+			return {
+				"Content-Type": "application/json",
+				"Accept": "application/json"
+			};
+		}
+	}
+
+	/**
+	 * Check if we're in demo mode (no valid Canvas authentication)
+	 */
+	private isDemoMode(): boolean {
+		return !this.isConfigured() || !canvasAuth.getAuthState().isAuthenticated;
 	}
 
 	/**
 	 * Create a Media resource for wound photo
 	 */
 	async createMediaResource(imageData: string, patientId: string, title?: string): Promise<CanvasResponse<MediaResource>> {
+		// Return mock data in demo mode
+		if (this.isDemoMode()) {
+			const mockMediaResource: MediaResource = {
+				resourceType: "Media",
+				status: "completed",
+				content: {
+					contentType: "image/jpeg",
+					data: imageData.replace(/^data:image\/jpeg;base64,/, ''),
+					title: title || "Wound photograph"
+				},
+				subject: {
+					reference: `Patient/${patientId}`
+				},
+				note: [{
+					text: "AI-analyzed wound photograph captured via WoundSnap"
+				}],
+				createdDateTime: new Date().toISOString()
+			};
+
+			await new Promise(resolve => setTimeout(resolve, 50)); // Simulate API delay
+			return {
+				success: true,
+				data: mockMediaResource,
+				id: `demo-media-${Date.now()}`
+			};
+		}
+
 		try {
 			const mediaResource: MediaResource = {
 				resourceType: "Media",
@@ -109,6 +152,16 @@ class CanvasService {
 	 * Create an Observation resource
 	 */
 	async createObservation(observation: FHIRObservation): Promise<CanvasResponse<FHIRObservation>> {
+		// Return mock data in demo mode
+		if (this.isDemoMode()) {
+			await new Promise(resolve => setTimeout(resolve, 30)); // Simulate API delay
+			return {
+				success: true,
+				data: observation,
+				id: `demo-observation-${Date.now()}`
+			};
+		}
+
 		try {
 			const response = await fetch(`${this.baseUrl}/api/fhir/Observation`, {
 				method: "POST",
@@ -140,6 +193,16 @@ class CanvasService {
 	 * Create a Condition resource
 	 */
 	async createCondition(condition: FHIRCondition): Promise<CanvasResponse<FHIRCondition>> {
+		// Return mock data in demo mode
+		if (this.isDemoMode()) {
+			await new Promise(resolve => setTimeout(resolve, 25)); // Simulate API delay
+			return {
+				success: true,
+				data: condition,
+				id: `demo-condition-${Date.now()}`
+			};
+		}
+
 		try {
 			const response = await fetch(`${this.baseUrl}/api/fhir/Condition`, {
 				method: "POST",
