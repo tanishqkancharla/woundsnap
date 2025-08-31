@@ -118,13 +118,16 @@ class PhenomlService {
 		try {
 			// Use real API if credentials are configured, otherwise simulate
 			if (this.email && this.password) {
+				console.log("✅ Using real Phenoml API with credentials");
 				return this.callLang2FHIR(request);
 			} else {
+				console.warn("⚠️ Phenoml credentials not configured, using mock data");
 				return this.simulateConversion(request);
 			}
 		} catch (error) {
 			console.error("Phenoml FHIR conversion error:", error);
-			throw error;
+			console.warn("🔄 Falling back to mock data after API failure");
+			return this.simulateConversion(request);
 		}
 	}
 

@@ -5,6 +5,7 @@ import { phenomlService, PhenomlResponse } from './phenomlService';
 import { canvasService, CanvasResponse } from './canvasService';
 import { keragonService, WoundAnalysisData } from './keragonService';
 import { ekareService, EkareAnalysisResponse } from './ekareService';
+import { metriportService } from './metriportService';
 
 export interface WorkflowStepResult {
 	step: string;
@@ -40,6 +41,7 @@ class WoundWorkflowService {
 		"AI Analysis (MedGemma)", 
 		"FHIR Conversion (Phenoml)",
 		"EHR Storage (Canvas)",
+		"Patient Context (Metriport)",
 		"Workflow Automation (Keragon)",
 		"Advanced Analytics (eKare.ai)"
 	];
@@ -92,8 +94,17 @@ class WoundWorkflowService {
 				throw new Error(storageStep.error);
 			}
 
-			// Step 5: Trigger Keragon Workflows
-			this.updateProgress(onProgress, 5, "Workflow Automation (Keragon)", "Triggering care team workflows...");
+			// Step 5: Patient Context from Metriport
+			this.updateProgress(onProgress, 5, "Patient Context (Metriport)", "Retrieving patient medical history...");
+			const metriportStep = await this.getPatientContext(patientId);
+			steps.push(metriportStep);
+			
+			if (!metriportStep.success) {
+				console.warn("Metriport patient context failed, but continuing:", metriportStep.error);
+			}
+
+			// Step 6: Trigger Keragon Workflows
+			this.updateProgress(onProgress, 6, "Workflow Automation (Keragon)", "Triggering care team workflows...");
 			const workflowStep = await this.triggerKeragonWorkflows(analysisStep.data, patientId);
 			steps.push(workflowStep);
 			
@@ -101,8 +112,8 @@ class WoundWorkflowService {
 				console.warn("Keragon workflow failed, but continuing:", workflowStep.error);
 			}
 
-			// Step 6: eKare Advanced Analytics
-			this.updateProgress(onProgress, 6, "Advanced Analytics (eKare.ai)", "Performing 3D wound measurement and healing prediction...");
+			// Step 7: eKare Advanced Analytics
+			this.updateProgress(onProgress, 7, "Advanced Analytics (eKare.ai)", "Performing 3D wound measurement and healing prediction...");
 			const ekareStep = await this.runEkareAnalysis(imageData, patientId);
 			steps.push(ekareStep);
 			
@@ -120,6 +131,7 @@ class WoundWorkflowService {
 					medgemmaAnalysis: analysisStep.data,
 					fhirResources: fhirStep.data,
 					canvasIds: storageStep.data,
+					patientContext: metriportStep.success ? metriportStep.data : null,
 					workflowResults: workflowStep.data,
 					ekareAnalysis: ekareStep.success ? ekareStep.data : null
 				},
@@ -329,7 +341,37 @@ class WoundWorkflowService {
 	}
 
 	/**
-	 * Step 6: eKare Advanced Analytics
+	 * Step 5: Get Patient Context from Metriport
+	 */
+	private async getPatientContext(patientId: string): Promise<WorkflowStepResult> {
+		const stepStart = Date.now();
+		
+		try {
+			console.log("🔄 Attempting real Metriport patient context API call...");
+			const contextResult = await metriportService.getPatientContextSummary(patientId);
+			
+			if (!contextResult.success) {
+				throw new Error(contextResult.error || "Patient context retrieval failed");
+			}
+
+			return {
+				step: "Patient Context (Metriport)",
+				success: true,
+				data: contextResult.data,
+				duration: Date.now() - stepStart
+			};
+		} catch (error) {
+			return {
+				step: "Patient Context (Metriport)",
+				success: false,
+				error: error instanceof Error ? error.message : "Patient context retrieval failed",
+				duration: Date.now() - stepStart
+			};
+		}
+	}
+
+	/**
+	 * Step 7: eKare Advanced Analytics
 	 */
 	private async runEkareAnalysis(imageData: string, patientId: string): Promise<WorkflowStepResult> {
 		const stepStart = Date.now();

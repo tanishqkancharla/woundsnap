@@ -250,8 +250,11 @@ class MetriportService {
 		try {
 			// For demo mode or any failure, return mock data immediately
 			if (this.isDemoMode() || patientId === "demo-patient") {
+				console.warn("⚠️ Metriport not configured or demo patient, using mock data");
 				return this.getMockPatientContext(patientId);
 			}
+			
+			console.log("🔄 Attempting real Metriport patient context API call...");
 
 			// Start query for wound-care relevant resources
 			const relevantResources = [
@@ -308,10 +311,11 @@ class MetriportService {
 	}
 
 	/**
-	 * Check if we're in demo mode (no real API key or sandbox)
+	 * Check if we're in demo mode (no real API key)
 	 */
 	private isDemoMode(): boolean {
-		return !this.apiKey || this.apiKey === "" || this.baseUrl.includes("sandbox");
+		// Allow sandbox mode for real API testing
+		return !this.apiKey || this.apiKey === "";
 	}
 
 	/**

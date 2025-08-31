@@ -167,6 +167,11 @@ Implement Woundsnap as detailed in the @docs/Hackathon/Woundsnap.md file.
 - [x] would it be possible to make some small changes to the demo. In the "Treatment Plan" button, under quick actions, can you add the "customize treatment plan" from the treatment plan to "Clinician Review" section instead. In the "Clinician Review" button, can you have a button that says "generate clinical summary". For the "treatment plan" button, you can write as the headline "Patient Summary/Treatment Instructions"
       Status: Completed successfully. Updated dashboard button text, moved customization form from Treatment Plan to Clinician Review, added "Generate Clinical Summary" button, and achieved clear separation between patient-facing and clinician workflows. All functionality tested and verified. See docs/todos/user-feedback-treatment-plan-changes.md
 
+### API Implementation
+
+- [ ] Replace mock implementations with real API calls
+      All 6 sponsor APIs (MedGemma, Canvas, Phenoml, Keragon, Metriport, eKare.ai) are currently using mock data. Need to implement actual API calls using the real keys available in .env file. Currently returning identical results regardless of uploaded image.
+
 ### Error Handling Tests
 
 - [ ] API failure fallback behavior

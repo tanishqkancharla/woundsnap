@@ -70,9 +70,19 @@ class EkareService {
 	 * Analyze wound using eKare.ai advanced wound analytics
 	 */
 	async analyzeWound(request: EkareAnalysisRequest): Promise<EkareAnalysisResponse> {
-		// For now, simulate the analysis since we need to contact eKare for API access
-		// This will be replaced with real API call once endpoint is available
-		return this.simulateAnalysis(request);
+		if (!this.apiKey) {
+			console.warn("eKare.ai API key not configured, using mock data");
+			return this.simulateAnalysis(request);
+		}
+
+		try {
+			// Attempt real API call with configured token
+			console.log("Attempting real eKare.ai API call...");
+			return await this.callEkareAPI(request);
+		} catch (error) {
+			console.warn("eKare.ai API call failed, falling back to mock:", error);
+			return this.simulateAnalysis(request);
+		}
 	}
 
 	/**
@@ -259,9 +269,7 @@ class EkareService {
 	 * Check if service is properly configured
 	 */
 	isConfigured(): boolean {
-		// For development, always return true since we're using mock data
-		// When real API is available, check for API key
-		return true; // return !!this.apiKey;
+		return !!this.apiKey;
 	}
 
 	/**
