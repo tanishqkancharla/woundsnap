@@ -137,7 +137,7 @@ class MetriportService {
 
 	constructor() {
 		this.baseUrl = "https://api.sandbox.metriport.com";
-		this.apiKey = process.env.METRIPORT_API_KEY || "";
+		this.apiKey = import.meta.env.VITE_METRIPORT_API_KEY || "";
 	}
 
 	/**

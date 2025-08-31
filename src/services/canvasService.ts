@@ -42,7 +42,7 @@ class CanvasService {
 	private baseUrl: string;
 
 	constructor() {
-		this.baseUrl = process.env.CANVAS_INSTANCE_URL?.replace(/\/$/, '') || "";
+		this.baseUrl = import.meta.env.VITE_CANVAS_INSTANCE_URL?.replace(/\/$/, '') || "";
 	}
 
 	/**

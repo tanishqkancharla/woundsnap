@@ -25,7 +25,7 @@ class MedGemmaService {
 	constructor() {
 		// TODO: Replace with actual Keywell/Google Vertex AI endpoint when available
 		this.baseUrl = "https://api.example.com/medgemma"; // Placeholder
-		this.accessToken = process.env.KEYWELL_PAT_TOKEN || "";
+		this.accessToken = import.meta.env.VITE_KEYWELL_PAT_TOKEN || "";
 	}
 
 	/**

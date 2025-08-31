@@ -63,13 +63,13 @@ Implement Woundsnap as detailed in the @docs/Hackathon/Woundsnap.md file.
       Status: Completed successfully. Updated dashboard with proper teal primary button color (#17a2b8), improved typography with larger section headers (1.5rem), enhanced spacing (2.5rem between sections), and consistent line-heights following the aesthetic guide. All changes tested and verified. See docs/todos/dashboard-aesthetic.md
 - [x] Migrate to Vite from Parcel
       Status: Completed successfully. Removed Parcel, installed Vite with React plugin, configured environment variables, updated scripts, and verified all functionality works. Build time improved to 370ms. See docs/todos/migrate-to-vite.md
-- [ ] Get a deploy out
 
 ## UI/UX Discrepancies Found (Screen Audit)
 
 ### Login Screen Discrepancies
 
-- [ ] Add "Demo Mode (Skip Authentication)" blue link to match implementation
+- [x] Add "Demo Mode (Skip Authentication)" blue link to match implementation
+      Status: Already completed. Demo mode link exists, is properly styled in blue (#17a2b8), and works correctly. Tested functionality confirms it bypasses authentication and navigates to dashboard. See docs/todos/login-demo-mode-link.md
       Mockup: missing demo mode link / Implementation: has demo mode link below login button
 
 ### Photo Capture Screen Discrepancies

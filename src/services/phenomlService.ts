@@ -73,9 +73,9 @@ class PhenomlService {
 	private accessToken: string | null = null;
 
 	constructor() {
-		this.baseUrl = process.env.PHENOML_API_BASE_URL || "https://phenoml-hackathon.app.pheno.ml";
-		this.email = process.env.PHENOML_EMAIL || "";
-		this.password = process.env.PHENOML_PASSWORD || "";
+		this.baseUrl = import.meta.env.VITE_PHENOML_API_BASE_URL || "https://phenoml-hackathon.app.pheno.ml";
+		this.email = import.meta.env.VITE_PHENOML_EMAIL || "";
+		this.password = import.meta.env.VITE_PHENOML_PASSWORD || "";
 	}
 
 	/**

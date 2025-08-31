@@ -53,9 +53,9 @@ class KeragonService {
     // Keragon workflows are configured manually in their platform
     // These are webhook URLs that would be configured in Keragon to trigger workflows
     this.webhookEndpoints = {
-      'critical-risk': process.env.KERAGON_CRITICAL_WEBHOOK_URL || '',
-      'standard-care': process.env.KERAGON_STANDARD_WEBHOOK_URL || '',
-      'follow-up-reminder': process.env.KERAGON_FOLLOWUP_WEBHOOK_URL || '',
+      'critical-risk': import.meta.env.VITE_KERAGON_CRITICAL_WEBHOOK_URL || '',
+      'standard-care': import.meta.env.VITE_KERAGON_STANDARD_WEBHOOK_URL || '',
+      'follow-up-reminder': import.meta.env.VITE_KERAGON_FOLLOWUP_WEBHOOK_URL || '',
     };
     
     // Enable mock mode for development/demo (always true since no API keys)

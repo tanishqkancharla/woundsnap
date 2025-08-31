@@ -28,11 +28,11 @@ class CanvasAuthService {
 
 	constructor() {
 		this.config = {
-			clientId: process.env.CANVAS_CLIENT_ID || "",
-			clientSecret: process.env.CANVAS_CLIENT_SECRET || "",
-			canvasInstanceUrl: process.env.CANVAS_INSTANCE_URL || "",
+			clientId: import.meta.env.VITE_CANVAS_CLIENT_ID || "",
+			clientSecret: import.meta.env.VITE_CANVAS_CLIENT_SECRET || "",
+			canvasInstanceUrl: import.meta.env.VITE_CANVAS_INSTANCE_URL || "",
 			redirectUri: 
-				process.env.NODE_ENV === "production"
+				import.meta.env.PROD
 					? "https://woundsnap.vercel.app/auth/callback"
 					: "http://localhost:1234/auth/callback",
 			scopes: [
