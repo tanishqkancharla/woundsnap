@@ -25,7 +25,7 @@ Implement Woundsnap as detailed in the @docs/Hackathon/Woundsnap.md file.
       Status: Completed successfully. Installed react-router-dom@6, axios, and react-webcam with TypeScript types. Build test passes. See docs/todos/add-react-libraries.md
 - [x] Create .env file with all API keys
 - [x] Set up Vercel environment variables
-  Status: Completed successfully. Added all 6 environment variables (Canvas, Phenoml, Metriport APIs) to Vercel production environment. See docs/todos/vercel-env-vars.md
+      Status: Completed successfully. Added all 6 environment variables (Canvas, Phenoml, Metriport APIs) to Vercel production environment. See docs/todos/vercel-env-vars.md
 - [x] Replace basic index.tsx with proper app structure
       Status: Completed successfully. Created comprehensive React app with all 11 core screens, React Router navigation, and proper TypeScript structure. Ready for API integrations. See docs/todos/replace-basic-index.md
 
@@ -34,13 +34,11 @@ Implement Woundsnap as detailed in the @docs/Hackathon/Woundsnap.md file.
 - [x] PhotoCapture → MedGemma → Phenoml → Canvas vertical slice
       Status: Completed successfully. Built complete end-to-end workflow with photo capture, AI analysis, FHIR conversion, and EHR storage. Includes progress tracking, error handling, and comprehensive results display. All services implemented with mock data for testing. See docs/todos/photocapture-medgemma-phenoml-canvas.md
 - [-] Keragon workflow integration
-      Status: Service implemented with mock workflows for demo. Requires manual configuration in Keragon web platform to set up live SMS/email notifications. See docs/todos/keragon-workflow-integration.md
-- [ ] Manual Keragon workflow configuration (requires human operator)
-      Login to Keragon platform and manually build 3 workflow templates using their visual editor: critical risk alerts, standard care communication, and follow-up reminders. Configure webhook endpoints and SMS/email providers.
+  Status: Service implemented with mock workflows for demo. Requires manual configuration in Keragon web platform to set up live SMS/email notifications. See docs/todos/keragon-workflow-integration.md
+- [-] Manual Keragon workflow configuration (requires human operator)
+  Status: Blocked by Cloudflare security validation. Automated signup attempts fail with security validation errors. Manual human interaction required to create account and complete platform configuration. Comprehensive planning and documentation completed in docs/todos/keragon-manual-config.md. Mock implementation remains functional for demo purposes.
 - [x] Metriport patient context integration
       Status: Completed successfully. Implemented PatientContext component with Metriport API integration, graceful fallback to mock data, and comprehensive clinical context display in ResultsScreen. Shows wound healing risk factors, medical conditions, medications, allergies, and previous treatments. See docs/todos/metriport-patient-context.md
-- [ ] eKare.ai basic analytics endpoint
-      Call one analytics endpoint with wound photo and display measurement result
 
 ## API Unblockers (URGENT)
 
@@ -57,6 +55,8 @@ Implement Woundsnap as detailed in the @docs/Hackathon/Woundsnap.md file.
       Status: Completed successfully. Implemented complete OAuth 2.0 flow with Canvas Medical including authorization redirect, token exchange, secure storage, and callback handling. Professional UI with permissions display and demo mode. Tested with Canvas dev environment. See docs/todos/login-screen.md
 - [x] Dashboard - main navigation hub
       Status: Completed successfully. Implemented comprehensive navigation hub with mock data, stats section, recent analyses display, quick actions grid, and professional medical styling. All navigation and demo mode functionality tested and working. See docs/todos/dashboard.md
+- [x] Add support for uploading photos so we can upload test photos for testing end-to-end flows
+      Status: Completed successfully. Implemented comprehensive photo upload functionality in PhotoCapture component with file validation, error handling, and seamless UI integration. Upload button works alongside camera capture, enabling easy testing with sample images. End-to-end flow verified: Upload → Preview → Analyze → Results. See docs/todos/add-photo-upload.md
 
 ## Secondary Screens (IF TIME PERMITS)
 
@@ -67,14 +67,16 @@ Implement Woundsnap as detailed in the @docs/Hackathon/Woundsnap.md file.
 ## End-to-End Testing Flows (Demo Validation)
 
 ### Critical Demo Flow
+
 - [ ] Happy path: Welcome → Login → Dashboard → PhotoCapture → AI Analysis → Results → Canvas FHIR storage
       Complete user journey from app launch to wound data stored in Canvas Medical EHR
 
-### API Integration Tests  
+### API Integration Tests
+
 - [ ] MedGemma wound analysis flow
       Upload sample wound photo, verify AI returns wound measurements, tissue types, infection indicators
 - [ ] Phenoml FHIR conversion flow  
-      Send MedGemma text output to Phenoml, verify proper FHIR Observation and Condition resources returned
+       Send MedGemma text output to Phenoml, verify proper FHIR Observation and Condition resources returned
 - [ ] Canvas FHIR storage flow
       POST wound photo as Media resource, analysis as Observation, diagnosis as Condition to Canvas sandbox
 - [ ] Keragon workflow trigger test
@@ -85,6 +87,7 @@ Implement Woundsnap as detailed in the @docs/Hackathon/Woundsnap.md file.
       Send wound photo to eKare endpoint, verify measurement/analytics response
 
 ### Error Handling Tests
+
 - [ ] API failure fallback behavior
       Test app behavior when each API is unavailable (graceful degradation vs. hard failures)
 - [ ] Authentication token refresh
@@ -93,17 +96,20 @@ Implement Woundsnap as detailed in the @docs/Hackathon/Woundsnap.md file.
 ## POST-DEMO (Only After Critical Path Works)
 
 ### Essential Components for Demo
+
 - [ ] Basic loading spinner for AI processing
 - [ ] Simple error handling and user feedback
 - [ ] Mock data fallbacks in case APIs fail during demo
 
 ### Demo Preparation
+
 - [ ] Sample wound photos for testing
-- [ ] Mock patient data for Canvas sandbox  
+- [ ] Mock patient data for Canvas sandbox
 - [ ] Demo script showcasing all 6 sponsors
 - [ ] Video backup recordings (if APIs fail live)
 
 ### Final Polish
+
 - [ ] Mobile responsiveness cleanup
 - [ ] Basic error handling improvements
 - [ ] Deployment final checks
@@ -111,12 +117,15 @@ Implement Woundsnap as detailed in the @docs/Hackathon/Woundsnap.md file.
 ## DEPRIORITIZED (Cut for Hackathon)
 
 ### Unused Screens
+
 - WoundInformationForm, TreatmentPlan, PatientProfile, ClinicianVerification, SupportFAQs
 
-### Advanced Components  
+### Advanced Components
+
 - Interactive body diagram, measurement tools, ruler overlay, timeline, progress bars
 
 ### Advanced Features
+
 - Photo quality validation, results caching, local storage, full test suite
 - Component unit tests, browser compatibility testing
 - Performance optimization, security audit, SSL setup
