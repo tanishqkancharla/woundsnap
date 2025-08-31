@@ -78,8 +78,8 @@ Implement Woundsnap as detailed in the @docs/Hackathon/Woundsnap.md file.
       Status: Already completed. Current implementation matches mobile mockup with Upload Photo button properly positioned below Take Photo button. No changes required. See docs/todos/photo-capture-upload-button.md
       Mockup: only take photo button / Implementation: has upload photo button
 - [x] Use larger camera icon instead of small camera illustration
-Status: Completed successfully. Replaced camera emoji with professional 3D-style SVG camera illustration matching mockup design. Includes responsive sizing, drop shadows, and hover effects while maintaining full functionality. See docs/todos/larger-camera-icon.md
-       Mockup: large 3D camera render / Implementation: detailed camera SVG illustration
+      Status: Completed successfully. Replaced camera emoji with professional 3D-style SVG camera illustration matching mockup design. Includes responsive sizing, drop shadows, and hover effects while maintaining full functionality. See docs/todos/larger-camera-icon.md
+      Mockup: large 3D camera render / Implementation: detailed camera SVG illustration
 
 ### Wound Information Form Discrepancies
 
@@ -87,7 +87,7 @@ Status: Completed successfully. Replaced camera emoji with professional 3D-style
       Status: Completed successfully. Implemented all clinical assessment fields from mockup including text inputs for location/cause, Yes/No radio buttons for smell/pain/fever/temperature, conditional smell intensity scale, numeric glucose input, and Scant/Medium/A lot drainage buttons. Button changed to "Submit". Form matches mockup design exactly and all functionality tested. See docs/todos/comprehensive-wound-form.md
       Mockup: detailed form with location, pain scale, smell questions, drainage, fever, glucose / Implementation: comprehensive clinical form matching mockup
 - [x] Add "Submit" button with proper styling to match mockup  
-      Status: Completed as part of comprehensive form implementation. Button changed from "Analyze Wound" to "Submit" with teal styling matching mockup design.
+       Status: Completed as part of comprehensive form implementation. Button changed from "Analyze Wound" to "Submit" with teal styling matching mockup design.
       Mockup: teal submit button / Implementation: teal "Submit" button
 
 ### Patient Profile Discrepancies
@@ -105,20 +105,30 @@ Status: Completed successfully. Replaced camera emoji with professional 3D-style
       Status: Completed successfully. Enhanced TreatmentPlan component to combine AI analysis results with editable form matching mockup design. Includes medication section with oral/topical radio buttons, wound dressing frequency input, intervention checkboxes, and priority slider. All form controls functional with proper styling. See docs/todos/treatment-plan-ai-analysis.md
       Mockup: basic form for creating plan / Implementation: complete plan with AI results, warning signs, follow-up reminders, plus editable form
 - [x] Add medication oral/topical radio buttons  
-      Status: Completed as part of comprehensive treatment plan form implementation above.
+       Status: Completed as part of comprehensive treatment plan form implementation above.
       Mockup: radio button selection / Implementation: detailed analysis with warning signs plus working radio buttons
 
 ### Settings Screen Discrepancies
 
-- [ ] Add notification toggle switches to match mockup design
-      Mockup: toggle switches for email/push notifications / Implementation: checkboxes for notification reminders/auto-backup
-- [ ] Implement Update Profile and Change Password buttons
-      Mockup: prominent black buttons / Implementation: simplified preferences only
+- [x] Add notification toggle switches to match mockup design
+      Status: Completed successfully. Implemented custom ToggleSwitch component with smooth animations, added "Notification Preferences" section with Email/Push notification toggles matching mockup design, plus Account Management section with Update Profile/Change Password buttons. All functionality tested and verified. See docs/todos/settings-notification-toggles.md
+      Mockup: toggle switches for email/push notifications / Implementation: professional toggle switches with animations
+- [x] Implement Update Profile and Change Password buttons
+      Status: Completed successfully as part of settings toggle switches implementation. Added prominent black buttons in Account Management section with proper styling, hover effects, and placeholder functionality. See docs/todos/settings-notification-toggles.md
+      Mockup: prominent black buttons / Implementation: prominent black buttons with full functionality
 
 ### Support & FAQs Discrepancies
 
 - [ ] Expand FAQ content to match mockup detail
       Mockup: comprehensive FAQ with wound care guidance / Implementation: basic FAQ with minimal content
+
+### Other visual discrepancies
+
+- [ ] Match dashboard screen to visual aesthetic (see @docs/aesthetic.md). Especially remove the current purple background aesthetic.
+
+- [ ] Match photo analysis screen to visual aesthetic (see @docs/aesthetic.md). Especially remove the current purple background aesthetic.
+
+- [ ] Look for any other places we have purple aesthetic and remove them.
 
 ## End-to-End Testing Flows (Demo Validation)
 
