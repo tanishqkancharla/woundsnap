@@ -4,6 +4,7 @@ import { medgemmaService, WoundAnalysisResponse } from './medgemmaService';
 import { phenomlService, PhenomlResponse } from './phenomlService';
 import { canvasService, CanvasResponse } from './canvasService';
 import { keragonService, WoundAnalysisData } from './keragonService';
+import { ekareService, EkareAnalysisResponse } from './ekareService';
 
 export interface WorkflowStepResult {
 	step: string;
@@ -20,6 +21,7 @@ export interface WorkflowResult {
 		analysisText: string;
 		fhirResources: any;
 		canvasIds: any;
+		ekareAnalysis?: any;
 	};
 	totalDuration: number;
 	error?: string;
@@ -38,7 +40,8 @@ class WoundWorkflowService {
 		"AI Analysis (MedGemma)", 
 		"FHIR Conversion (Phenoml)",
 		"EHR Storage (Canvas)",
-		"Workflow Automation (Keragon)"
+		"Workflow Automation (Keragon)",
+		"Advanced Analytics (eKare.ai)"
 	];
 
 	/**
@@ -98,6 +101,15 @@ class WoundWorkflowService {
 				console.warn("Keragon workflow failed, but continuing:", workflowStep.error);
 			}
 
+			// Step 6: eKare Advanced Analytics
+			this.updateProgress(onProgress, 6, "Advanced Analytics (eKare.ai)", "Performing 3D wound measurement and healing prediction...");
+			const ekareStep = await this.runEkareAnalysis(imageData, patientId);
+			steps.push(ekareStep);
+			
+			if (!ekareStep.success) {
+				console.warn("eKare analytics failed, but continuing:", ekareStep.error);
+			}
+
 			const totalDuration = Date.now() - startTime;
 
 			return {
@@ -108,7 +120,8 @@ class WoundWorkflowService {
 					medgemmaAnalysis: analysisStep.data,
 					fhirResources: fhirStep.data,
 					canvasIds: storageStep.data,
-					workflowResults: workflowStep.data
+					workflowResults: workflowStep.data,
+					ekareAnalysis: ekareStep.success ? ekareStep.data : null
 				},
 				totalDuration
 			};
@@ -310,6 +323,38 @@ class WoundWorkflowService {
 				step: "Workflow Automation (Keragon)",
 				success: false,
 				error: error instanceof Error ? error.message : "Workflow automation failed",
+				duration: Date.now() - stepStart
+			};
+		}
+	}
+
+	/**
+	 * Step 6: eKare Advanced Analytics
+	 */
+	private async runEkareAnalysis(imageData: string, patientId: string): Promise<WorkflowStepResult> {
+		const stepStart = Date.now();
+		
+		try {
+			const analysisResult = await ekareService.analyzeWound({
+				imageData,
+				patientId,
+				metadata: {
+					captureDate: new Date().toISOString(),
+					deviceInfo: "WoundSnap Mobile App"
+				}
+			});
+
+			return {
+				step: "Advanced Analytics (eKare.ai)",
+				success: true,
+				data: analysisResult,
+				duration: Date.now() - stepStart
+			};
+		} catch (error) {
+			return {
+				step: "Advanced Analytics (eKare.ai)",
+				success: false,
+				error: error instanceof Error ? error.message : "eKare analytics failed",
 				duration: Date.now() - stepStart
 			};
 		}

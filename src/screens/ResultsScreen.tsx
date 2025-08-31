@@ -287,6 +287,193 @@ function ResultsScreen() {
 							</div>
 						)}
 
+						{/* eKare Advanced Analytics */}
+						{result.finalData?.ekareAnalysis && (
+							<div className="ekare-analytics-section">
+								<h3>Advanced Wound Analytics (eKare.ai)</h3>
+								<div className="ekare-content">
+									{/* Measurements */}
+									<div className="measurements-section">
+										<h4>3D Wound Measurements</h4>
+										<div className="measurements-grid">
+											<div className="measurement-item">
+												<span className="measurement-label">Length:</span>
+												<span className="measurement-value">
+													{result.finalData.ekareAnalysis.measurements.length.toFixed(1)} cm
+												</span>
+											</div>
+											<div className="measurement-item">
+												<span className="measurement-label">Width:</span>
+												<span className="measurement-value">
+													{result.finalData.ekareAnalysis.measurements.width.toFixed(1)} cm
+												</span>
+											</div>
+											<div className="measurement-item">
+												<span className="measurement-label">Depth:</span>
+												<span className="measurement-value">
+													{result.finalData.ekareAnalysis.measurements.depth.toFixed(1)} cm
+												</span>
+											</div>
+											<div className="measurement-item">
+												<span className="measurement-label">Area:</span>
+												<span className="measurement-value">
+													{result.finalData.ekareAnalysis.measurements.area.toFixed(1)} cm²
+												</span>
+											</div>
+											<div className="measurement-item">
+												<span className="measurement-label">Volume:</span>
+												<span className="measurement-value">
+													{result.finalData.ekareAnalysis.measurements.volume.toFixed(1)} cm³
+												</span>
+											</div>
+											<div className="measurement-item">
+												<span className="measurement-label">Perimeter:</span>
+												<span className="measurement-value">
+													{result.finalData.ekareAnalysis.measurements.perimeter.toFixed(1)} cm
+												</span>
+											</div>
+										</div>
+									</div>
+
+									{/* Tissue Analysis */}
+									<div className="tissue-analysis-section">
+										<h4>Tissue Composition</h4>
+										<div className="tissue-breakdown">
+											<div className="tissue-item">
+												<span className="tissue-label">Granulation:</span>
+												<div className="tissue-bar">
+													<div 
+														className="tissue-fill granulation"
+														style={{width: `${result.finalData.ekareAnalysis.tissueAnalysis.granulation}%`}}
+													></div>
+												</div>
+												<span className="tissue-percentage">
+													{result.finalData.ekareAnalysis.tissueAnalysis.granulation}%
+												</span>
+											</div>
+											<div className="tissue-item">
+												<span className="tissue-label">Slough:</span>
+												<div className="tissue-bar">
+													<div 
+														className="tissue-fill slough"
+														style={{width: `${result.finalData.ekareAnalysis.tissueAnalysis.slough}%`}}
+													></div>
+												</div>
+												<span className="tissue-percentage">
+													{result.finalData.ekareAnalysis.tissueAnalysis.slough}%
+												</span>
+											</div>
+											<div className="tissue-item">
+												<span className="tissue-label">Necrosis:</span>
+												<div className="tissue-bar">
+													<div 
+														className="tissue-fill necrosis"
+														style={{width: `${result.finalData.ekareAnalysis.tissueAnalysis.necrosis}%`}}
+													></div>
+												</div>
+												<span className="tissue-percentage">
+													{result.finalData.ekareAnalysis.tissueAnalysis.necrosis}%
+												</span>
+											</div>
+											<div className="tissue-item">
+												<span className="tissue-label">Epithelialization:</span>
+												<div className="tissue-bar">
+													<div 
+														className="tissue-fill epithelialization"
+														style={{width: `${result.finalData.ekareAnalysis.tissueAnalysis.epithelialization}%`}}
+													></div>
+												</div>
+												<span className="tissue-percentage">
+													{result.finalData.ekareAnalysis.tissueAnalysis.epithelialization}%
+												</span>
+											</div>
+										</div>
+									</div>
+
+									{/* Healing Prediction */}
+									<div className="healing-prediction-section">
+										<h4>Healing Prediction</h4>
+										<div className="prediction-summary">
+											<div className="prediction-item">
+												<span className="prediction-label">Estimated Healing Time:</span>
+												<span className="prediction-value highlight">
+													{result.finalData.ekareAnalysis.healingPrediction.estimatedHealingTime} days
+												</span>
+											</div>
+											<div className="prediction-item">
+												<span className="prediction-label">Confidence:</span>
+												<span className="prediction-value">
+													{result.finalData.ekareAnalysis.healingPrediction.confidence}%
+												</span>
+											</div>
+											<div className="prediction-item">
+												<span className="prediction-label">Healing Stage:</span>
+												<span className="prediction-value">
+													{result.finalData.ekareAnalysis.healingPrediction.healingStage}
+												</span>
+											</div>
+											<div className="prediction-item">
+												<span className="prediction-label">Progression Rate:</span>
+												<span className={`prediction-value ${result.finalData.ekareAnalysis.healingPrediction.progressionRate > 0 ? 'positive' : 'negative'}`}>
+													{result.finalData.ekareAnalysis.healingPrediction.progressionRate > 0 ? '+' : ''}
+													{result.finalData.ekareAnalysis.healingPrediction.progressionRate.toFixed(1)} cm²/week
+												</span>
+											</div>
+										</div>
+
+										{/* Risk Factors */}
+										{result.finalData.ekareAnalysis.healingPrediction.riskFactors?.length > 0 && (
+											<div className="risk-factors">
+												<strong>Risk Factors:</strong>
+												<ul>
+													{result.finalData.ekareAnalysis.healingPrediction.riskFactors.map((factor, index) => (
+														<li key={index}>{factor}</li>
+													))}
+												</ul>
+											</div>
+										)}
+
+										{/* Intervention Recommendations */}
+										{result.finalData.ekareAnalysis.healingPrediction.interventionRecommendations?.length > 0 && (
+											<div className="intervention-recommendations">
+												<strong>Intervention Recommendations:</strong>
+												<ul>
+													{result.finalData.ekareAnalysis.healingPrediction.interventionRecommendations.map((rec, index) => (
+														<li key={index}>{rec}</li>
+													))}
+												</ul>
+											</div>
+										)}
+									</div>
+
+									{/* Quality Metrics */}
+									<div className="quality-metrics-section">
+										<h4>Analysis Quality</h4>
+										<div className="quality-grid">
+											<div className="quality-item">
+												<span className="quality-label">Image Quality:</span>
+												<span className="quality-score">
+													{result.finalData.ekareAnalysis.qualityMetrics.imageQuality}/100
+												</span>
+											</div>
+											<div className="quality-item">
+												<span className="quality-label">Measurement Confidence:</span>
+												<span className="quality-score">
+													{result.finalData.ekareAnalysis.qualityMetrics.measurementConfidence}/100
+												</span>
+											</div>
+											<div className="quality-item">
+												<span className="quality-label">AI Analysis Confidence:</span>
+												<span className="quality-score">
+													{result.finalData.ekareAnalysis.qualityMetrics.aiAnalysisConfidence}/100
+												</span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						)}
+
 						{/* Workflow Steps Summary */}
 						<div className="workflow-steps">
 							<h3>Process Summary</h3>

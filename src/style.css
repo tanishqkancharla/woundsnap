@@ -3039,6 +3039,262 @@ color: #17a2b8;
 	box-shadow: 0 8px 20px rgba(108, 117, 125, 0.3);
 }
 
+/* eKare Analytics Section */
+.ekare-analytics-section {
+	background: white;
+	border: 1px solid #e9ecef;
+	border-radius: 16px;
+	padding: 2rem;
+	margin-bottom: 2rem;
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.ekare-analytics-section h3 {
+	color: #000000;
+	font-size: 1.4rem;
+	font-weight: 600;
+	margin: 0 0 1.5rem 0;
+	border-bottom: 2px solid #17a2b8;
+	padding-bottom: 0.5rem;
+}
+
+.ekare-content {
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+}
+
+/* Measurements Section */
+.measurements-section h4 {
+	color: #2c3e50;
+	font-size: 1.2rem;
+	font-weight: 600;
+	margin: 0 0 1rem 0;
+}
+
+.measurements-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+	gap: 1rem;
+}
+
+.measurement-item {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0.75rem 1rem;
+	background: #f8f9fa;
+	border-radius: 8px;
+	border-left: 3px solid #17a2b8;
+}
+
+.measurement-label {
+	font-weight: 500;
+	color: #495057;
+}
+
+.measurement-value {
+	font-weight: 700;
+	color: #17a2b8;
+	font-size: 1.1rem;
+}
+
+/* Tissue Analysis Section */
+.tissue-analysis-section h4 {
+	color: #2c3e50;
+	font-size: 1.2rem;
+	font-weight: 600;
+	margin: 0 0 1rem 0;
+}
+
+.tissue-breakdown {
+	display: flex;
+	flex-direction: column;
+	gap: 0.75rem;
+}
+
+.tissue-item {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+}
+
+.tissue-label {
+	min-width: 120px;
+	font-weight: 500;
+	color: #495057;
+}
+
+.tissue-bar {
+	flex: 1;
+	height: 20px;
+	background: #e9ecef;
+	border-radius: 10px;
+	position: relative;
+	overflow: hidden;
+}
+
+.tissue-fill {
+	height: 100%;
+	border-radius: 10px;
+	transition: width 0.3s ease;
+}
+
+.tissue-fill.granulation {
+	background: #28a745;
+}
+
+.tissue-fill.slough {
+	background: #ffc107;
+}
+
+.tissue-fill.necrosis {
+	background: #dc3545;
+}
+
+.tissue-fill.epithelialization {
+	background: #17a2b8;
+}
+
+.tissue-percentage {
+	min-width: 40px;
+	text-align: right;
+	font-weight: 600;
+	color: #495057;
+}
+
+/* Healing Prediction Section */
+.healing-prediction-section h4 {
+	color: #2c3e50;
+	font-size: 1.2rem;
+	font-weight: 600;
+	margin: 0 0 1rem 0;
+}
+
+.prediction-summary {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+	gap: 1rem;
+	margin-bottom: 1.5rem;
+}
+
+.prediction-item {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0.75rem 1rem;
+	background: #f8f9fa;
+	border-radius: 8px;
+}
+
+.prediction-label {
+	font-weight: 500;
+	color: #495057;
+}
+
+.prediction-value {
+	font-weight: 700;
+	color: #495057;
+}
+
+.prediction-value.highlight {
+	color: #17a2b8;
+	font-size: 1.2rem;
+}
+
+.prediction-value.positive {
+	color: #28a745;
+}
+
+.prediction-value.negative {
+	color: #dc3545;
+}
+
+/* Quality Metrics Section */
+.quality-metrics-section h4 {
+	color: #2c3e50;
+	font-size: 1.2rem;
+	font-weight: 600;
+	margin: 0 0 1rem 0;
+}
+
+.quality-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+	gap: 1rem;
+}
+
+.quality-item {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0.75rem 1rem;
+	background: #f8f9fa;
+	border-radius: 8px;
+	border-left: 3px solid #17a2b8;
+}
+
+.quality-label {
+	font-weight: 500;
+	color: #495057;
+}
+
+.quality-score {
+	font-weight: 700;
+	color: #17a2b8;
+}
+
+/* Risk factors and recommendations specific to eKare */
+.ekare-analytics-section .risk-factors,
+.ekare-analytics-section .intervention-recommendations {
+	margin-top: 1rem;
+}
+
+.ekare-analytics-section .risk-factors strong,
+.ekare-analytics-section .intervention-recommendations strong {
+	color: #2c3e50;
+	display: block;
+	margin-bottom: 0.5rem;
+}
+
+.ekare-analytics-section .risk-factors ul,
+.ekare-analytics-section .intervention-recommendations ul {
+	margin: 0;
+	padding-left: 1.5rem;
+}
+
+.ekare-analytics-section .risk-factors li,
+.ekare-analytics-section .intervention-recommendations li {
+	color: #2c3e50;
+	margin-bottom: 0.5rem;
+	line-height: 1.4;
+}
+
+/* Mobile responsiveness for eKare section */
+@media (max-width: 768px) {
+	.measurements-grid {
+		grid-template-columns: 1fr;
+	}
+	
+	.prediction-summary {
+		grid-template-columns: 1fr;
+	}
+	
+	.quality-grid {
+		grid-template-columns: 1fr;
+	}
+	
+	.tissue-item {
+		flex-direction: column;
+		align-items: stretch;
+		gap: 0.5rem;
+	}
+	
+	.tissue-label {
+		min-width: unset;
+	}
+}
+
 /* Mobile responsiveness for results screen */
 @media (max-width: 768px) {
 	.results-header {
