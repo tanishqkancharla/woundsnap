@@ -157,7 +157,17 @@ function PhotoCapture() {
 								onClick={handleTakePhoto}
 								disabled={isCapturing || isUploading}
 							>
-								{isCapturing ? "Capturing..." : isUploading ? "Uploading..." : "Take Photo"}
+								{isCapturing ? (
+									<>
+										<div className="loading-spinner loading-spinner-small" style={{ marginRight: '0.5rem' }}></div>
+										Capturing...
+									</>
+								) : isUploading ? (
+									<>
+										<div className="loading-spinner loading-spinner-small" style={{ marginRight: '0.5rem' }}></div>
+										Uploading...
+									</>
+								) : "Take Photo"}
 							</button>
 							<button
 								className="upload-photo-button"

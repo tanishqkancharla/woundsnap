@@ -54,7 +54,12 @@ function LoginScreen() {
 						onClick={handleCanvasLogin}
 						disabled={isLoading}
 					>
-						{isLoading ? "Logging in..." : "Login"}
+						{isLoading ? (
+							<>
+								<div className="loading-spinner loading-spinner-small" style={{ marginRight: '0.5rem' }}></div>
+								Logging in...
+							</>
+						) : "Login"}
 					</button>
 					
 					{/* Demo mode for testing */}

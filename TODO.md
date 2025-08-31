@@ -61,6 +61,55 @@ Implement Woundsnap as detailed in the @docs/Hackathon/Woundsnap.md file.
       Status: Completed successfully. Redesigned Welcome, Login, and Photo Capture screens to match mockup designs with clean white backgrounds, teal branding, and simplified interfaces. All functionality preserved while achieving professional, minimal aesthetic. See docs/todos/design-cleanup.md
 - [x] Match dashboard aesthetic to match @docs/aesthetic.md
       Status: Completed successfully. Updated dashboard with proper teal primary button color (#17a2b8), improved typography with larger section headers (1.5rem), enhanced spacing (2.5rem between sections), and consistent line-heights following the aesthetic guide. All changes tested and verified. See docs/todos/dashboard-aesthetic.md
+- [ ] Migrate to Vite from Parcel
+- [ ] Get a deploy out
+
+## UI/UX Discrepancies Found (Screen Audit)
+
+### Login Screen Discrepancies
+
+- [ ] Add "Demo Mode (Skip Authentication)" blue link to match implementation
+      Mockup: missing demo mode link / Implementation: has demo mode link below login button
+
+### Photo Capture Screen Discrepancies
+
+- [ ] Add "Upload Photo" button below "Take Photo"
+      Mockup: only take photo button / Implementation: has upload photo button
+- [ ] Use larger camera icon instead of small camera illustration
+      Mockup: large 3D camera render / Implementation: small flat camera icon
+
+### Wound Information Form Discrepancies
+
+- [ ] Implement comprehensive form with all wound assessment fields
+      Mockup: detailed form with location, pain scale, smell questions, drainage, fever, glucose / Implementation: minimal form with dropdowns only
+- [ ] Add "Submit" button with proper styling to match mockup
+      Mockup: teal submit button / Implementation: "Analyze Wound" button
+
+### Patient Profile Discrepancies
+
+- [ ] Implement full patient profile with photo, personal info, medical history
+      Mockup: complete profile with Emily Johnson details, photo, edit buttons / Implementation: placeholder screen only
+- [ ] Add Edit buttons for each section (Personal Info, Medical History, Contact Details)
+      Mockup: multiple edit buttons / Implementation: no functionality
+
+### Treatment Plan Discrepancies
+
+- [ ] Implement detailed treatment plan with AI analysis results
+      Mockup: basic form for creating plan / Implementation: complete plan with AI results, warning signs, follow-up reminders
+- [ ] Add medication oral/topical radio buttons  
+       Mockup: radio button selection / Implementation: detailed analysis with warning signs
+
+### Settings Screen Discrepancies
+
+- [ ] Add notification toggle switches to match mockup design
+      Mockup: toggle switches for email/push notifications / Implementation: checkboxes for notification reminders/auto-backup
+- [ ] Implement Update Profile and Change Password buttons
+      Mockup: prominent black buttons / Implementation: simplified preferences only
+
+### Support & FAQs Discrepancies
+
+- [ ] Expand FAQ content to match mockup detail
+      Mockup: comprehensive FAQ with wound care guidance / Implementation: basic FAQ with minimal content
 
 ## End-to-End Testing Flows (Demo Validation)
 
@@ -95,7 +144,8 @@ Implement Woundsnap as detailed in the @docs/Hackathon/Woundsnap.md file.
 
 ### Essential Components for Demo
 
-- [ ] Basic loading spinner for AI processing
+- [x] Basic loading spinner for AI processing
+      Status: Completed successfully. Standardized loading spinner CSS with size/color variants, updated all components to use consistent spinners, and verified functionality with Playwright testing. See docs/todos/basic-loading-spinner.md
 - [ ] Simple error handling and user feedback
 - [ ] Mock data fallbacks in case APIs fail during demo
 

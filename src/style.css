@@ -1047,13 +1047,60 @@ body {
 	border-bottom: none;
 }
 
+/* Loading Spinner Variants */
 .loading-spinner {
+	border-radius: 50%;
+	animation: spin 1s linear infinite;
+	display: inline-block;
+}
+
+/* Default size (medium) */
+.loading-spinner,
+.loading-spinner-medium {
+	width: 1.5rem;
+	height: 1.5rem;
+	border: 3px solid rgba(255, 255, 255, 0.3);
+	border-top: 3px solid white;
+}
+
+/* Small spinner */
+.loading-spinner-small {
 	width: 1rem;
 	height: 1rem;
 	border: 2px solid rgba(255, 255, 255, 0.3);
 	border-top: 2px solid white;
 	border-radius: 50%;
 	animation: spin 1s linear infinite;
+	display: inline-block;
+}
+
+/* Large spinner */
+.loading-spinner-large {
+	width: 2.5rem;
+	height: 2.5rem;
+	border: 4px solid rgba(255, 255, 255, 0.3);
+	border-top: 4px solid white;
+	border-radius: 50%;
+	animation: spin 1s linear infinite;
+	display: inline-block;
+}
+
+/* Dark background variant (for light backgrounds) */
+.loading-spinner-dark,
+.loading-spinner-dark.loading-spinner-small,
+.loading-spinner-dark.loading-spinner-medium,
+.loading-spinner-dark.loading-spinner-large {
+	border-color: rgba(0, 0, 0, 0.1);
+	border-top-color: #17a2b8;
+}
+
+/* Teal variant (brand color) */
+.loading-spinner-teal,
+.loading-spinner-teal.loading-spinner-small,
+.loading-spinner-teal.loading-spinner-medium,
+.loading-spinner-teal.loading-spinner-large {
+	border-color: rgba(23, 162, 184, 0.2);
+	border-top-color: #17a2b8;
 }
 
 .patient-context-content {

@@ -59,7 +59,7 @@ function AuthCallback() {
 			<div className="auth-callback-content">
 				{status === "processing" && (
 					<>
-						<div className="loading-spinner"></div>
+						<div className="loading-spinner loading-spinner-large loading-spinner-teal"></div>
 						<h2>Completing Authentication...</h2>
 						<p>Please wait while we securely connect your Canvas Medical account.</p>
 					</>
@@ -105,12 +105,6 @@ function AuthCallback() {
 				}
 
 				.loading-spinner {
-					width: 40px;
-					height: 40px;
-					border: 4px solid #e5e7eb;
-					border-left: 4px solid #3b82f6;
-					border-radius: 50%;
-					animation: spin 1s linear infinite;
 					margin: 0 auto 20px;
 				}
 

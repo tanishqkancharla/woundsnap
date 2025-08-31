@@ -25,7 +25,7 @@ function WoundInformationForm() {
 	if (isAnalyzing) {
 		return (
 			<div className="analyzing-screen">
-				<div className="loading-spinner">🔄</div>
+				<div className="loading-spinner loading-spinner-large loading-spinner-teal"></div>
 				<h2>Analyzing Wound...</h2>
 				<p>AI is processing your wound photo and information</p>
 				<div className="analysis-steps">
