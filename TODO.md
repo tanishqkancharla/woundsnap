@@ -95,8 +95,9 @@ Status: Completed successfully. Replaced camera emoji with professional 3D-style
 - [x] Implement full patient profile with photo, personal info, medical history
       Status: Completed successfully. Implemented comprehensive patient profile screen matching mockup design with Emily Johnson data, circular photo, three sections (Personal Info, Medical History, Contact Details), black edit buttons, modal functionality, and professional styling. All features tested and working. See docs/todos/implement-patient-profile.md
       Mockup: complete profile with Emily Johnson details, photo, edit buttons / Implementation: complete implementation with full functionality
-- [ ] Add Edit buttons for each section (Personal Info, Medical History, Contact Details)
-      Mockup: multiple edit buttons / Implementation: no functionality
+- [x] Add Edit buttons for each section (Personal Info, Medical History, Contact Details)
+      Status: Completed successfully. Enhanced existing edit buttons with functional forms, proper data persistence, and professional styling. All three sections (Personal Info, Medical History, Contact Details) now have fully working edit modals with form fields, save/cancel functionality, and data updates. See docs/todos/add-edit-buttons-patient-profile.md
+      Mockup: multiple edit buttons / Implementation: fully functional edit buttons with enhanced forms
 
 ### Treatment Plan Discrepancies
 

@@ -1940,6 +1940,45 @@ margin-bottom: 2rem;
 	background: #138496;
 }
 
+/* Edit Form Styles */
+.edit-form {
+	margin-bottom: 2rem;
+}
+
+.form-group {
+	margin-bottom: 1.5rem;
+}
+
+.form-group label {
+	display: block;
+	font-weight: 500;
+	color: #333;
+	margin-bottom: 0.5rem;
+	font-size: 0.9rem;
+}
+
+.form-group input {
+	width: 100%;
+	padding: 0.75rem;
+	border: 2px solid #e9ecef;
+	border-radius: 8px;
+	font-size: 1rem;
+	color: #333;
+	background: white;
+	transition: all 0.2s;
+	box-sizing: border-box;
+}
+
+.form-group input:focus {
+	outline: none;
+	border-color: #17a2b8;
+	box-shadow: 0 0 0 3px rgba(23, 162, 184, 0.1);
+}
+
+.form-group input::placeholder {
+	color: #999;
+}
+
 /* Mobile responsiveness */
 @media (max-width: 768px) {
 	.profile-content {

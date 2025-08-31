@@ -36,13 +36,72 @@ const mockPatientData: PatientProfile = {
 };
 
 function PatientProfile() {
-	const [patient] = useState<PatientProfile>(mockPatientData);
+	const [patient, setPatient] = useState<PatientProfile>(mockPatientData);
 	const [showEditModal, setShowEditModal] = useState<string | null>(null);
+	const [editFormData, setEditFormData] = useState<any>({});
 
 	const handleEditClick = (section: string) => {
 		setShowEditModal(section);
-		// In a real app, this would open an edit modal or navigate to an edit screen
-		console.log(`Edit ${section} clicked`);
+		// Pre-populate form data based on section
+		switch (section) {
+			case 'personal':
+				setEditFormData({
+					name: patient.name,
+					dateOfBirth: patient.dateOfBirth
+				});
+				break;
+			case 'medical':
+				setEditFormData({
+					surgeries: patient.medicalHistory.surgeries.join(', '),
+					conditions: patient.medicalHistory.conditions.join(', '),
+					allergies: patient.medicalHistory.allergies.join(', ')
+				});
+				break;
+			case 'contact':
+				setEditFormData({
+					phone: patient.contactDetails.phone,
+					email: patient.contactDetails.email,
+					address: patient.contactDetails.address || ''
+				});
+				break;
+		}
+	};
+
+	const handleSaveEdit = () => {
+		// Update patient data based on the current section
+		const newPatient = { ...patient };
+		
+		switch (showEditModal) {
+			case 'personal':
+				newPatient.name = editFormData.name;
+				newPatient.dateOfBirth = editFormData.dateOfBirth;
+				break;
+			case 'medical':
+				newPatient.medicalHistory = {
+					surgeries: editFormData.surgeries.split(',').map((s: string) => s.trim()).filter((s: string) => s),
+					conditions: editFormData.conditions.split(',').map((s: string) => s.trim()).filter((s: string) => s),
+					allergies: editFormData.allergies.split(',').map((s: string) => s.trim()).filter((s: string) => s)
+				};
+				break;
+			case 'contact':
+				newPatient.contactDetails = {
+					phone: editFormData.phone,
+					email: editFormData.email,
+					address: editFormData.address
+				};
+				break;
+		}
+		
+		setPatient(newPatient);
+		setShowEditModal(null);
+		console.log('Patient data updated:', newPatient);
+	};
+
+	const handleInputChange = (field: string, value: string) => {
+		setEditFormData(prev => ({
+			...prev,
+			[field]: value
+		}));
 	};
 
 	const handleUpdateClick = () => {
@@ -142,15 +201,104 @@ function PatientProfile() {
 				</button>
 			</div>
 
-			{/* Simple edit modal placeholder */}
+			{/* Edit modal with form fields */}
 			{showEditModal && (
 				<div className="edit-modal-overlay" onClick={() => setShowEditModal(null)}>
 					<div className="edit-modal" onClick={(e) => e.stopPropagation()}>
-						<h3>Edit {showEditModal} Information</h3>
-						<p>Edit functionality would be implemented here.</p>
+						<h3>Edit {showEditModal === 'personal' ? 'Personal' : showEditModal === 'medical' ? 'Medical History' : 'Contact Details'} Information</h3>
+						
+						<div className="edit-form">
+							{showEditModal === 'personal' && (
+								<>
+									<div className="form-group">
+										<label>Name:</label>
+										<input
+											type="text"
+											value={editFormData.name || ''}
+											onChange={(e) => handleInputChange('name', e.target.value)}
+											placeholder="Enter name"
+										/>
+									</div>
+									<div className="form-group">
+										<label>Date of Birth:</label>
+										<input
+											type="text"
+											value={editFormData.dateOfBirth || ''}
+											onChange={(e) => handleInputChange('dateOfBirth', e.target.value)}
+											placeholder="MM/DD/YYYY"
+										/>
+									</div>
+								</>
+							)}
+							
+							{showEditModal === 'medical' && (
+								<>
+									<div className="form-group">
+										<label>Surgeries (comma-separated):</label>
+										<input
+											type="text"
+											value={editFormData.surgeries || ''}
+											onChange={(e) => handleInputChange('surgeries', e.target.value)}
+											placeholder="e.g., Knee Replacement, Appendectomy"
+										/>
+									</div>
+									<div className="form-group">
+										<label>Conditions (comma-separated):</label>
+										<input
+											type="text"
+											value={editFormData.conditions || ''}
+											onChange={(e) => handleInputChange('conditions', e.target.value)}
+											placeholder="e.g., Hypertension, Diabetes"
+										/>
+									</div>
+									<div className="form-group">
+										<label>Allergies (comma-separated):</label>
+										<input
+											type="text"
+											value={editFormData.allergies || ''}
+											onChange={(e) => handleInputChange('allergies', e.target.value)}
+											placeholder="e.g., Penicillin, Peanuts"
+										/>
+									</div>
+								</>
+							)}
+							
+							{showEditModal === 'contact' && (
+								<>
+									<div className="form-group">
+										<label>Phone:</label>
+										<input
+											type="tel"
+											value={editFormData.phone || ''}
+											onChange={(e) => handleInputChange('phone', e.target.value)}
+											placeholder="(555) 123-4567"
+										/>
+									</div>
+									<div className="form-group">
+										<label>Email:</label>
+										<input
+											type="email"
+											value={editFormData.email || ''}
+											onChange={(e) => handleInputChange('email', e.target.value)}
+											placeholder="email@example.com"
+										/>
+									</div>
+									<div className="form-group">
+										<label>Address:</label>
+										<input
+											type="text"
+											value={editFormData.address || ''}
+											onChange={(e) => handleInputChange('address', e.target.value)}
+											placeholder="123 Main St, City, State"
+										/>
+									</div>
+								</>
+							)}
+						</div>
+						
 						<div className="modal-actions">
 							<button onClick={() => setShowEditModal(null)}>Cancel</button>
-							<button className="save-button">Save</button>
+							<button className="save-button" onClick={handleSaveEdit}>Save</button>
 						</div>
 					</div>
 				</div>
