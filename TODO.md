@@ -148,7 +148,7 @@ Implement Woundsnap as detailed in the @docs/Hackathon/Woundsnap.md file.
       Status: Completed successfully. Enhanced MedGemma service to display structured analysis data including wound type, severity, measurements, clinical recommendations, and confidence scores. All mock data validation passed. See docs/todos/medgemma-wound-analysis-flow.md
 - [x] Phenoml FHIR conversion flow  
        Send MedGemma text output to Phenoml, verify proper FHIR Observation and Condition resources returned
-       Status: Completed successfully. Browser integration test confirmed Phenoml service converts MedGemma analysis to FHIR Observation resources in 7.7s. Created comprehensive test suite and validated complete MedGemma → Phenoml → Canvas workflow. See docs/todos/phenoml-fhir-conversion-flow.md
+      Status: Completed successfully. Browser integration test confirmed Phenoml service converts MedGemma analysis to FHIR Observation resources in 7.7s. Created comprehensive test suite and validated complete MedGemma → Phenoml → Canvas workflow. See docs/todos/phenoml-fhir-conversion-flow.md
 - [x] Canvas FHIR storage flow
       POST wound photo as Media resource, analysis as Observation, diagnosis as Condition to Canvas sandbox
       Status: Completed successfully. Implemented Canvas FHIR API integration with demo mode fallback for testing. All three resource types (Media, Observation, Condition) are properly created and stored. End-to-end workflow tested and validated - shows green checkmarks with resource IDs in UI. Demo mode provides realistic mock data when Canvas credentials unavailable. See docs/todos/canvas-fhir-storage-flow.md
@@ -161,6 +161,11 @@ Implement Woundsnap as detailed in the @docs/Hackathon/Woundsnap.md file.
 - [x] eKare analytics test
       Send wound photo to eKare endpoint, verify measurement/analytics response
       Status: Completed successfully. Implemented comprehensive eKare.ai mock service as Step 6 of wound analysis workflow. Displays 3D measurements, tissue analysis, healing predictions, quality metrics, and clinical recommendations. Full integration tested and validated. See docs/todos/ekare-analytics-test.md
+
+### User feedback
+
+- [x] would it be possible to make some small changes to the demo. In the "Treatment Plan" button, under quick actions, can you add the "customize treatment plan" from the treatment plan to "Clinician Review" section instead. In the "Clinician Review" button, can you have a button that says "generate clinical summary". For the "treatment plan" button, you can write as the headline "Patient Summary/Treatment Instructions"
+      Status: Completed successfully. Updated dashboard button text, moved customization form from Treatment Plan to Clinician Review, added "Generate Clinical Summary" button, and achieved clear separation between patient-facing and clinician workflows. All functionality tested and verified. See docs/todos/user-feedback-treatment-plan-changes.md
 
 ### Error Handling Tests
 

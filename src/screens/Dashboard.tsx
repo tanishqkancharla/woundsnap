@@ -209,7 +209,7 @@ function Dashboard() {
 						<Link to="/treatment" className="quick-action-card">
 							<div className="action-icon">💊</div>
 							<div className="action-text">
-								<h3>Treatment Plan</h3>
+								<h3>Patient Summary/Treatment Instructions</h3>
 								<p>Care instructions</p>
 							</div>
 						</Link>
