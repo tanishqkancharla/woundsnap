@@ -37,8 +37,8 @@ Implement Woundsnap as detailed in the @docs/Hackathon/Woundsnap.md file.
       Status: Service implemented with mock workflows for demo. Requires manual configuration in Keragon web platform to set up live SMS/email notifications. See docs/todos/keragon-workflow-integration.md
 - [ ] Manual Keragon workflow configuration (requires human operator)
       Login to Keragon platform and manually build 3 workflow templates using their visual editor: critical risk alerts, standard care communication, and follow-up reminders. Configure webhook endpoints and SMS/email providers.
-- [ ] Metriport patient context integration
-      Single API call to fetch patient history and display under "Clinical Context"
+- [x] Metriport patient context integration
+      Status: Completed successfully. Implemented PatientContext component with Metriport API integration, graceful fallback to mock data, and comprehensive clinical context display in ResultsScreen. Shows wound healing risk factors, medical conditions, medications, allergies, and previous treatments. See docs/todos/metriport-patient-context.md
 - [ ] eKare.ai basic analytics endpoint
       Call one analytics endpoint with wound photo and display measurement result
 

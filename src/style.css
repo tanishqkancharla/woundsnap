@@ -764,3 +764,154 @@ body {
 		font-size: 1.25rem;
 	}
 }
+
+/* Patient Context Component */
+.patient-context {
+	background: rgba(255, 255, 255, 0.05);
+	border: 1px solid rgba(255, 255, 255, 0.1);
+	border-radius: 12px;
+	margin-bottom: 1.5rem;
+	overflow: hidden;
+}
+
+.patient-context-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 1rem 1.25rem;
+	background: rgba(255, 255, 255, 0.05);
+	border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.patient-context-header h3 {
+	margin: 0;
+	color: white;
+	font-size: 1.1rem;
+	font-weight: 600;
+}
+
+.context-controls {
+	display: flex;
+	align-items: center;
+	gap: 0.75rem;
+}
+
+.context-status {
+	font-size: 0.85rem;
+	color: rgba(255, 255, 255, 0.8);
+}
+
+.context-status.error {
+	color: #ff6b6b;
+}
+
+.expand-icon {
+	font-size: 1.25rem;
+	color: rgba(255, 255, 255, 0.6);
+	font-weight: bold;
+}
+
+.patient-context.loading .patient-context-header {
+	border-bottom: none;
+}
+
+.loading-spinner {
+	width: 1rem;
+	height: 1rem;
+	border: 2px solid rgba(255, 255, 255, 0.3);
+	border-top: 2px solid white;
+	border-radius: 50%;
+	animation: spin 1s linear infinite;
+}
+
+.patient-context-content {
+	padding: 1.25rem;
+}
+
+.context-section {
+	margin-bottom: 1.5rem;
+}
+
+.context-section:last-child {
+	margin-bottom: 0;
+}
+
+.context-section h4 {
+	margin: 0 0 0.75rem 0;
+	color: white;
+	font-size: 0.95rem;
+	font-weight: 600;
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+}
+
+.context-section ul {
+	margin: 0;
+	padding-left: 1.25rem;
+	list-style-type: disc;
+}
+
+.context-section li {
+	color: rgba(255, 255, 255, 0.9);
+	font-size: 0.9rem;
+	line-height: 1.4;
+	margin-bottom: 0.5rem;
+}
+
+.risk-factor {
+	color: #ffeb3b !important;
+	font-weight: 500;
+}
+
+.allergy {
+	color: #ff8a65 !important;
+	font-weight: 500;
+}
+
+.context-footer {
+	margin-top: 1rem;
+	padding-top: 1rem;
+	border-top: 1px solid rgba(255, 255, 255, 0.1);
+	text-align: center;
+}
+
+.context-footer small {
+	color: rgba(255, 255, 255, 0.6);
+	font-size: 0.8rem;
+}
+
+.no-context-message {
+	padding: 1rem 1.25rem;
+	color: rgba(255, 255, 255, 0.7);
+	font-size: 0.9rem;
+	margin: 0;
+}
+
+.error-display {
+	padding: 1rem 1.25rem;
+}
+
+.error-display p {
+	color: #ff6b6b;
+	margin: 0 0 0.75rem 0;
+	font-size: 0.9rem;
+}
+
+.btn-link {
+	background: none;
+	border: none;
+	color: #4fc3f7;
+	text-decoration: underline;
+	cursor: pointer;
+	font-size: 0.85rem;
+}
+
+.btn-link:hover {
+	color: #29b6f6;
+}
+
+@keyframes spin {
+	0% { transform: rotate(0deg); }
+	100% { transform: rotate(360deg); }
+}

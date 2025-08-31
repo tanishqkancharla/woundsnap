@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { woundWorkflowService, WorkflowProgress, WorkflowResult } from "../services/woundWorkflowService";
+import PatientContext from "../components/PatientContext";
 
 function ResultsScreen() {
 	const location = useLocation();
@@ -116,6 +117,14 @@ function ResultsScreen() {
 							</button>
 						</div>
 					</div>
+				)}
+
+				{/* Patient Clinical Context - Always Show */}
+				{!isProcessing && (
+					<PatientContext 
+						patientId="demo-patient" 
+						className="clinical-context-section"
+					/>
 				)}
 
 				{/* Results Section */}
