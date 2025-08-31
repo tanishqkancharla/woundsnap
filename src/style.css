@@ -1994,3 +1994,295 @@ margin-bottom: 2rem;
 		padding: 1rem;
 	}
 }
+
+/* Treatment Plan Styles */
+.treatment-plan {
+	min-height: 100vh;
+	background: #ffffff;
+}
+
+.treatment-header {
+	display: flex;
+	align-items: center;
+	padding: 1rem 1.5rem;
+	background: white;
+	border-bottom: 1px solid #e9ecef;
+}
+
+.treatment-header h1 {
+	margin: 0;
+	font-size: 1.25rem;
+	font-weight: 600;
+	color: #000;
+}
+
+.treatment-content {
+	padding: 1.5rem;
+	max-width: 800px;
+	margin: 0 auto;
+}
+
+.analysis-results {
+	background: #f8f9fa;
+	border-radius: 12px;
+	padding: 1.5rem;
+	margin-bottom: 2rem;
+}
+
+.analysis-results h2 {
+	color: #000;
+	font-size: 1.5rem;
+	font-weight: 600;
+	margin: 0 0 1rem 0;
+}
+
+.result-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+	gap: 1rem;
+}
+
+.result-item {
+	display: flex;
+	flex-direction: column;
+	gap: 0.25rem;
+}
+
+.result-item .label {
+	font-weight: 500;
+	color: #666;
+	font-size: 0.9rem;
+}
+
+.result-item .value {
+	font-weight: 600;
+	color: #000;
+	font-size: 1rem;
+}
+
+.risk-low {
+	color: #28a745;
+}
+
+.treatment-steps {
+	margin-bottom: 2rem;
+}
+
+.treatment-steps h2 {
+	color: #000;
+	font-size: 1.5rem;
+	font-weight: 600;
+	margin: 0 0 1rem 0;
+}
+
+.treatment-list {
+	padding-left: 1.5rem;
+}
+
+.treatment-step {
+	margin-bottom: 0.75rem;
+	line-height: 1.5;
+	color: #333;
+}
+
+.warning-signs {
+	background: #fff3cd;
+	border: 1px solid #ffeaa7;
+	border-radius: 12px;
+	padding: 1.5rem;
+	margin-bottom: 2rem;
+}
+
+.warning-signs h2 {
+	color: #856404;
+	font-size: 1.5rem;
+	font-weight: 600;
+	margin: 0 0 0.5rem 0;
+}
+
+.warning-signs p {
+	color: #856404;
+	margin: 0 0 1rem 0;
+}
+
+.warning-list {
+	margin: 0;
+	padding-left: 1.5rem;
+}
+
+.warning-item {
+	margin-bottom: 0.5rem;
+	color: #856404;
+	line-height: 1.4;
+}
+
+.treatment-form {
+	background: white;
+	border: 1px solid #e9ecef;
+	border-radius: 12px;
+	padding: 1.5rem;
+	margin-bottom: 2rem;
+}
+
+.treatment-form h2 {
+	color: #000;
+	font-size: 1.5rem;
+	font-weight: 600;
+	margin: 0 0 0.5rem 0;
+}
+
+.treatment-form > p {
+	color: #666;
+	margin: 0 0 1.5rem 0;
+}
+
+.form-section {
+	margin-bottom: 2rem;
+}
+
+.form-section h3 {
+	color: #000;
+	font-size: 1.1rem;
+	font-weight: 600;
+	margin: 0 0 1rem 0;
+}
+
+.checkbox-group {
+	display: flex;
+	flex-direction: column;
+	gap: 0.75rem;
+	margin-top: 0.5rem;
+}
+
+.checkbox-option {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	font-weight: normal;
+	cursor: pointer;
+	margin-bottom: 0;
+}
+
+.checkbox-option input[type="checkbox"] {
+	width: auto;
+	margin: 0;
+}
+
+.slider-group {
+	margin-top: 0.5rem;
+}
+
+.priority-slider {
+	width: 100%;
+	margin: 0.5rem 0;
+	-webkit-appearance: none;
+	appearance: none;
+	height: 6px;
+	border-radius: 5px;
+	background: #ddd;
+	outline: none;
+}
+
+.priority-slider::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	appearance: none;
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+	background: #17a2b8;
+	cursor: pointer;
+}
+
+.priority-slider::-moz-range-thumb {
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+	background: #17a2b8;
+	cursor: pointer;
+	border: none;
+}
+
+.slider-labels {
+	display: flex;
+	justify-content: space-between;
+	font-size: 0.9rem;
+	color: #666;
+	margin-bottom: 0.5rem;
+}
+
+.priority-value {
+	font-weight: 600;
+	color: #17a2b8;
+	font-size: 1rem;
+}
+
+.submit-button {
+	background: #000000;
+	color: white;
+	padding: 1rem 2rem;
+	border: none;
+	border-radius: 8px;
+	font-size: 1.1rem;
+	font-weight: 600;
+	cursor: pointer;
+	transition: background-color 0.2s;
+	width: 100%;
+}
+
+.submit-button:hover {
+	background: #333333;
+}
+
+.treatment-actions {
+	display: flex;
+	gap: 1rem;
+	flex-wrap: wrap;
+}
+
+.treatment-actions .btn-primary {
+	background: #17a2b8;
+	color: white;
+	padding: 0.75rem 1.5rem;
+	text-decoration: none;
+	border-radius: 8px;
+	font-weight: 600;
+	transition: background-color 0.2s;
+}
+
+.treatment-actions .btn-primary:hover {
+	background: #138496;
+}
+
+.treatment-actions .btn-secondary {
+	background: #6c757d;
+	color: white;
+	padding: 0.75rem 1.5rem;
+	text-decoration: none;
+	border-radius: 8px;
+	font-weight: 600;
+	transition: background-color 0.2s;
+}
+
+.treatment-actions .btn-secondary:hover {
+	background: #5a6268;
+}
+
+/* Mobile responsiveness for treatment plan */
+@media (max-width: 768px) {
+	.treatment-content {
+		padding: 1rem;
+	}
+	
+	.result-grid {
+		grid-template-columns: 1fr;
+	}
+	
+	.treatment-actions {
+		flex-direction: column;
+	}
+	
+	.treatment-actions .btn-primary,
+	.treatment-actions .btn-secondary {
+		text-align: center;
+	}
+}

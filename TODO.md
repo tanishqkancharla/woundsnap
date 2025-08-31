@@ -101,10 +101,12 @@ Status: Completed successfully. Replaced camera emoji with professional 3D-style
 
 ### Treatment Plan Discrepancies
 
-- [ ] Implement detailed treatment plan with AI analysis results
-      Mockup: basic form for creating plan / Implementation: complete plan with AI results, warning signs, follow-up reminders
-- [ ] Add medication oral/topical radio buttons  
-       Mockup: radio button selection / Implementation: detailed analysis with warning signs
+- [x] Implement detailed treatment plan with AI analysis results
+      Status: Completed successfully. Enhanced TreatmentPlan component to combine AI analysis results with editable form matching mockup design. Includes medication section with oral/topical radio buttons, wound dressing frequency input, intervention checkboxes, and priority slider. All form controls functional with proper styling. See docs/todos/treatment-plan-ai-analysis.md
+      Mockup: basic form for creating plan / Implementation: complete plan with AI results, warning signs, follow-up reminders, plus editable form
+- [x] Add medication oral/topical radio buttons  
+      Status: Completed as part of comprehensive treatment plan form implementation above.
+      Mockup: radio button selection / Implementation: detailed analysis with warning signs plus working radio buttons
 
 ### Settings Screen Discrepancies
 
