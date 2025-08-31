@@ -1584,3 +1584,161 @@ margin-bottom: 2rem;
 	transform: translateY(-2px);
 	box-shadow: 0 8px 20px rgba(23, 162, 184, 0.3);
 }
+
+/* Wound Information Form Styles */
+.wound-form {
+	min-height: 100vh;
+	background: #ffffff;
+	padding-bottom: 2rem;
+}
+
+.form-header {
+	display: flex;
+	align-items: center;
+	padding: 1rem 1.5rem;
+	background: white;
+	border-bottom: 1px solid #e9ecef;
+}
+
+.back-button {
+	color: #17a2b8;
+	text-decoration: none;
+	font-size: 1rem;
+	font-weight: 500;
+	margin-right: 1rem;
+}
+
+.back-button:hover {
+	color: #138496;
+}
+
+.form-header h1 {
+	margin: 0;
+	font-size: 1.25rem;
+	font-weight: 600;
+	color: #000;
+}
+
+.wound-form-content {
+	padding: 1.5rem;
+	max-width: 600px;
+	margin: 0 auto;
+}
+
+.form-group {
+	margin-bottom: 1.5rem;
+}
+
+.form-group label {
+	display: block;
+	font-weight: 500;
+	color: #333;
+	margin-bottom: 0.5rem;
+	font-size: 0.95rem;
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group textarea {
+	width: 100%;
+	padding: 0.75rem;
+	border: 1px solid #ddd;
+	border-radius: 8px;
+	font-size: 1rem;
+	background: #f8f9fa;
+	transition: border-color 0.2s, background-color 0.2s;
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="number"]:focus,
+.form-group textarea:focus {
+	outline: none;
+	border-color: #17a2b8;
+	background: white;
+	box-shadow: 0 0 0 2px rgba(23, 162, 184, 0.1);
+}
+
+.radio-group {
+	display: flex;
+	gap: 1.5rem;
+	margin-top: 0.5rem;
+}
+
+.radio-option {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	font-weight: normal;
+	cursor: pointer;
+	margin-bottom: 0;
+}
+
+.radio-option input[type="radio"] {
+	width: auto;
+	margin: 0;
+}
+
+.smell-slider {
+	width: 100%;
+	margin: 0.5rem 0;
+}
+
+.scale-value {
+	display: inline-block;
+	margin-left: 0.5rem;
+	font-weight: 600;
+	color: #17a2b8;
+	font-size: 1.1rem;
+}
+
+.drainage-buttons {
+	display: flex;
+	gap: 0.75rem;
+	margin-top: 0.5rem;
+	flex-wrap: wrap;
+}
+
+.drainage-btn {
+	flex: 1;
+	min-width: 80px;
+	padding: 0.75rem 1rem;
+	border: 2px solid #ddd;
+	background: white;
+	color: #666;
+	border-radius: 8px;
+	font-size: 0.9rem;
+	font-weight: 500;
+	cursor: pointer;
+	transition: all 0.2s;
+}
+
+.drainage-btn:hover {
+	border-color: #17a2b8;
+	color: #17a2b8;
+}
+
+.drainage-btn.active {
+	background: #17a2b8;
+	border-color: #17a2b8;
+	color: white;
+}
+
+.submit-button {
+	width: 100%;
+	background: #17a2b8;
+	color: white;
+	border: none;
+	border-radius: 25px;
+	padding: 1rem 2rem;
+	font-size: 1.1rem;
+	font-weight: 600;
+	cursor: pointer;
+	transition: all 0.2s;
+	margin-top: 1rem;
+}
+
+.submit-button:hover {
+	background: #138496;
+	transform: translateY(-2px);
+	box-shadow: 0 8px 20px rgba(23, 162, 184, 0.3);
+}

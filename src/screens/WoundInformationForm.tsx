@@ -1,11 +1,34 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
+interface WoundFormData {
+	location: string;
+	woundCause: string;
+	hasSmell: boolean;
+	smellIntensity: number;
+	hasPain: boolean;
+	hasFever: boolean;
+	bloodGlucose: string;
+	isHotWarm: boolean;
+	drainageAmount: 'scant' | 'medium' | 'alot' | '';
+	// Keep some original fields for compatibility
+	painLevel: number;
+	duration: string;
+	previousTreatment: string;
+}
+
 function WoundInformationForm() {
-	const [formData, setFormData] = useState({
+	const [formData, setFormData] = useState<WoundFormData>({
 		location: "",
+		woundCause: "",
+		hasSmell: false,
+		smellIntensity: 5,
+		hasPain: false,
+		hasFever: false,
+		bloodGlucose: "",
+		isHotWarm: false,
+		drainageAmount: '',
 		painLevel: 5,
-		drainage: "",
 		duration: "",
 		previousTreatment: "",
 	});
@@ -49,83 +72,189 @@ function WoundInformationForm() {
 
 			<form onSubmit={handleSubmit} className="wound-form-content">
 				<div className="form-group">
-					<label htmlFor="location">Wound Location</label>
-					<select
+					<label htmlFor="location">Where is the wound located?</label>
+					<input
+						type="text"
 						id="location"
 						value={formData.location}
 						onChange={(e) =>
 							setFormData({ ...formData, location: e.target.value })
 						}
+						placeholder="Enter location"
 						required
-					>
-						<option value="">Select location</option>
-						<option value="leg">Leg</option>
-						<option value="arm">Arm</option>
-						<option value="back">Back</option>
-						<option value="foot">Foot</option>
-						<option value="other">Other</option>
-					</select>
-				</div>
-
-				<div className="form-group">
-					<label htmlFor="pain">Pain Level (1-10)</label>
-					<input
-						type="range"
-						id="pain"
-						min="1"
-						max="10"
-						value={formData.painLevel}
-						onChange={(e) =>
-							setFormData({ ...formData, painLevel: parseInt(e.target.value) })
-						}
 					/>
-					<span className="pain-value">{formData.painLevel}</span>
 				</div>
 
 				<div className="form-group">
-					<label htmlFor="drainage">Drainage Type</label>
-					<select
-						id="drainage"
-						value={formData.drainage}
-						onChange={(e) =>
-							setFormData({ ...formData, drainage: e.target.value })
-						}
-					>
-						<option value="">None</option>
-						<option value="clear">Clear</option>
-						<option value="yellow">Yellow</option>
-						<option value="green">Green</option>
-						<option value="bloody">Bloody</option>
-					</select>
-				</div>
-
-				<div className="form-group">
-					<label htmlFor="duration">How long has wound existed?</label>
+					<label htmlFor="woundCause">How did the wound occur?</label>
 					<input
 						type="text"
-						id="duration"
-						value={formData.duration}
+						id="woundCause"
+						value={formData.woundCause}
 						onChange={(e) =>
-							setFormData({ ...formData, duration: e.target.value })
+							setFormData({ ...formData, woundCause: e.target.value })
 						}
-						placeholder="e.g., 2 weeks"
+						placeholder="Describe the cause"
+						required
 					/>
 				</div>
 
 				<div className="form-group">
-					<label htmlFor="treatment">Previous Treatment</label>
-					<textarea
-						id="treatment"
-						value={formData.previousTreatment}
+					<label>Is there a smell?</label>
+					<div className="radio-group">
+						<label className="radio-option">
+							<input
+								type="radio"
+								name="hasSmell"
+								checked={formData.hasSmell === true}
+								onChange={() => setFormData({ ...formData, hasSmell: true })}
+							/>
+							Yes
+						</label>
+						<label className="radio-option">
+							<input
+								type="radio"
+								name="hasSmell"
+								checked={formData.hasSmell === false}
+								onChange={() => setFormData({ ...formData, hasSmell: false })}
+							/>
+							No
+						</label>
+					</div>
+				</div>
+
+				{formData.hasSmell && (
+					<div className="form-group">
+						<label htmlFor="smellIntensity">How bad is the smell on a scale of 1-10?</label>
+						<input
+							type="range"
+							id="smellIntensity"
+							min="1"
+							max="10"
+							value={formData.smellIntensity}
+							onChange={(e) =>
+								setFormData({ ...formData, smellIntensity: parseInt(e.target.value) })
+							}
+							className="smell-slider"
+						/>
+						<span className="scale-value">{formData.smellIntensity}</span>
+					</div>
+				)}
+
+				<div className="form-group">
+					<label>Does it hurt?</label>
+					<div className="radio-group">
+						<label className="radio-option">
+							<input
+								type="radio"
+								name="hasPain"
+								checked={formData.hasPain === true}
+								onChange={() => setFormData({ ...formData, hasPain: true })}
+							/>
+							Yes
+						</label>
+						<label className="radio-option">
+							<input
+								type="radio"
+								name="hasPain"
+								checked={formData.hasPain === false}
+								onChange={() => setFormData({ ...formData, hasPain: false })}
+							/>
+							No
+						</label>
+					</div>
+				</div>
+
+				<div className="form-group">
+					<label>Does the patient have a fever?</label>
+					<div className="radio-group">
+						<label className="radio-option">
+							<input
+								type="radio"
+								name="hasFever"
+								checked={formData.hasFever === true}
+								onChange={() => setFormData({ ...formData, hasFever: true })}
+							/>
+							Yes
+						</label>
+						<label className="radio-option">
+							<input
+								type="radio"
+								name="hasFever"
+								checked={formData.hasFever === false}
+								onChange={() => setFormData({ ...formData, hasFever: false })}
+							/>
+							No
+						</label>
+					</div>
+				</div>
+
+				<div className="form-group">
+					<label htmlFor="bloodGlucose">Latest blood glucose level</label>
+					<input
+						type="number"
+						id="bloodGlucose"
+						value={formData.bloodGlucose}
 						onChange={(e) =>
-							setFormData({ ...formData, previousTreatment: e.target.value })
+							setFormData({ ...formData, bloodGlucose: e.target.value })
 						}
-						placeholder="Any previous treatments or medications..."
+						placeholder="138"
 					/>
 				</div>
 
-				<button type="submit" className="btn-primary analyze-button">
-					Analyze Wound
+				<div className="form-group">
+					<label>Does the wound feel hot or warm to touch?</label>
+					<div className="radio-group">
+						<label className="radio-option">
+							<input
+								type="radio"
+								name="isHotWarm"
+								checked={formData.isHotWarm === true}
+								onChange={() => setFormData({ ...formData, isHotWarm: true })}
+							/>
+							Yes
+						</label>
+						<label className="radio-option">
+							<input
+								type="radio"
+								name="isHotWarm"
+								checked={formData.isHotWarm === false}
+								onChange={() => setFormData({ ...formData, isHotWarm: false })}
+							/>
+							No
+						</label>
+					</div>
+				</div>
+
+				<div className="form-group">
+					<label>Amount of drainage</label>
+					<div className="drainage-buttons">
+						<button
+							type="button"
+							className={`drainage-btn ${formData.drainageAmount === 'scant' ? 'active' : ''}`}
+							onClick={() => setFormData({ ...formData, drainageAmount: 'scant' })}
+						>
+							Scant
+						</button>
+						<button
+							type="button"
+							className={`drainage-btn ${formData.drainageAmount === 'medium' ? 'active' : ''}`}
+							onClick={() => setFormData({ ...formData, drainageAmount: 'medium' })}
+						>
+							Medium
+						</button>
+						<button
+							type="button"
+							className={`drainage-btn ${formData.drainageAmount === 'alot' ? 'active' : ''}`}
+							onClick={() => setFormData({ ...formData, drainageAmount: 'alot' })}
+						>
+							A lot
+						</button>
+					</div>
+				</div>
+
+				<button type="submit" className="btn-primary submit-button">
+					Submit
 				</button>
 			</form>
 		</div>
