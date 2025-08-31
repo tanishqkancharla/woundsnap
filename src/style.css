@@ -2431,21 +2431,145 @@ margin-bottom: 2rem;
 	margin-bottom: 0;
 }
 
+/* Support & FAQs Styles */
+.support-faqs {
+background-color: #f8f9fa;
+min-height: 100vh;
+}
+
+.support-header {
+background-color: white;
+padding: 1.5rem;
+        border-bottom: 1px solid #e5e5e5;
+display: flex;
+align-items: center;
+gap: 1rem;
+}
+
+.support-header .back-button {
+color: #17a2b8;
+        text-decoration: none;
+        font-weight: 500;
+}
+
+.support-header h1 {
+        margin: 0;
+        font-size: 1.5rem;
+        color: #333;
+}
+
+.support-content {
+        padding: 2rem;
+        max-width: 800px;
+        margin: 0 auto;
+}
+
+.about-section,
+.faqs-section,
+.resources-section,
+.contact-section {
+        background-color: white;
+        margin-bottom: 2rem;
+        padding: 2rem;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.faqs-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+}
+
+.faq-item {
+        border-bottom: 1px solid #f0f0f0;
+        padding-bottom: 1.5rem;
+}
+
+.faq-item:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+}
+
+.faq-question {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 0.5rem;
+}
+
+.faq-answer {
+        color: #666;
+        line-height: 1.6;
+        margin: 0;
+}
+
+.resources-list {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+}
+
+.resource-link {
+        color: #17a2b8;
+        text-decoration: none;
+        padding: 0.5rem 0;
+        border-bottom: 1px solid #f0f0f0;
+        transition: color 0.2s ease;
+}
+
+.resource-link:hover {
+        color: #138496;
+        text-decoration: underline;
+}
+
+.resource-link:last-child {
+        border-bottom: none;
+}
+
+.contact-support-btn {
+        background-color: #333;
+        color: white;
+        padding: 12px 24px;
+        border: none;
+        border-radius: 6px;
+        font-size: 1rem;
+        font-weight: 500;
+        cursor: pointer;
+        width: 100%;
+        transition: background-color 0.2s ease;
+}
+
+.contact-support-btn:hover {
+        background-color: #555;
+}
+
 /* Mobile responsive styles for settings */
 @media (max-width: 768px) {
-	.settings-content {
-		padding: 1rem;
-	}
-	
-	.settings-header {
-		padding: 1rem;
-	}
-	
-	.settings-header h1 {
-		font-size: 1.5rem;
-	}
-	
-	.toggle-switch-container {
-		padding: 0.75rem 0;
-	}
+        .settings-content {
+                padding: 1rem;
+        }
+
+        .settings-header {
+                padding: 1rem;
+        }
+
+        .settings-header h1 {
+                font-size: 1.5rem;
+        }
+
+        .toggle-switch-container {
+                padding: 0.75rem 0;
+        }
+
+        .support-content {
+                padding: 1rem;
+        }
+
+        .about-section,
+        .faqs-section,
+        .resources-section,
+        .contact-section {
+                padding: 1.5rem;
+        }
 }

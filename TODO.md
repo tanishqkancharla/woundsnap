@@ -119,8 +119,9 @@ Implement Woundsnap as detailed in the @docs/Hackathon/Woundsnap.md file.
 
 ### Support & FAQs Discrepancies
 
-- [ ] Expand FAQ content to match mockup detail
-      Mockup: comprehensive FAQ with wound care guidance / Implementation: basic FAQ with minimal content
+- [x] Expand FAQ content to match mockup detail
+      Status: Completed successfully. Added 3 new FAQ questions from mockup (wound record creation, healing tracking, treatment plan access), implemented Additional Resources section with 3 wound care links, and replaced contact buttons with single black Contact Support button. All styling matches mockup design. See docs/todos/expand-faq-content.md
+      Mockup: comprehensive FAQ with wound care guidance / Implementation: comprehensive FAQ matching mockup
 
 ### Other visual discrepancies
 
