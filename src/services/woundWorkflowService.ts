@@ -95,6 +95,7 @@ class WoundWorkflowService {
 				steps,
 				finalData: {
 					analysisText: analysisStep.data.analysisText,
+					medgemmaAnalysis: analysisStep.data,
 					fhirResources: fhirStep.data,
 					canvasIds: storageStep.data
 				},

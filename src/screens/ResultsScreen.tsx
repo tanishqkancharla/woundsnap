@@ -142,6 +142,56 @@ function ResultsScreen() {
 							</div>
 						)}
 
+						{/* Structured MedGemma Analysis Data */}
+						{result.finalData?.medgemmaAnalysis && (
+							<div className="medgemma-analysis-section">
+								<h3>MedGemma AI Analysis Details</h3>
+								<div className="medgemma-data">
+									{result.finalData.medgemmaAnalysis.woundType && (
+										<div className="analysis-field">
+											<strong>Wound Type:</strong> {result.finalData.medgemmaAnalysis.woundType}
+										</div>
+									)}
+									{result.finalData.medgemmaAnalysis.severity && (
+										<div className="analysis-field">
+											<strong>Severity:</strong> {result.finalData.medgemmaAnalysis.severity}
+										</div>
+									)}
+									{result.finalData.medgemmaAnalysis.measurements && (
+										<div className="analysis-field">
+											<strong>Measurements:</strong>
+											<div className="measurements">
+												{result.finalData.medgemmaAnalysis.measurements.length && (
+													<span>Length: {result.finalData.medgemmaAnalysis.measurements.length}</span>
+												)}
+												{result.finalData.medgemmaAnalysis.measurements.width && (
+													<span>Width: {result.finalData.medgemmaAnalysis.measurements.width}</span>
+												)}
+												{result.finalData.medgemmaAnalysis.measurements.depth && (
+													<span>Depth: {result.finalData.medgemmaAnalysis.measurements.depth}</span>
+												)}
+											</div>
+										</div>
+									)}
+									{result.finalData.medgemmaAnalysis.recommendations && result.finalData.medgemmaAnalysis.recommendations.length > 0 && (
+										<div className="analysis-field">
+											<strong>Clinical Recommendations:</strong>
+											<ul className="recommendations-list">
+												{result.finalData.medgemmaAnalysis.recommendations.map((rec, index) => (
+													<li key={index}>{rec}</li>
+												))}
+											</ul>
+										</div>
+									)}
+									{result.finalData.medgemmaAnalysis.confidence && (
+										<div className="analysis-field">
+											<strong>AI Confidence:</strong> {(result.finalData.medgemmaAnalysis.confidence * 100).toFixed(1)}%
+										</div>
+									)}
+								</div>
+							</div>
+						)}
+
 						{/* FHIR Resources Summary */}
 						{result.finalData?.fhirResources && (
 							<div className="fhir-section">

@@ -2741,6 +2741,7 @@ color: #17a2b8;
 }
 
 .analysis-text-section,
+.medgemma-analysis-section,
 .fhir-section,
 .storage-section {
 	background: white;
@@ -2751,6 +2752,7 @@ color: #17a2b8;
 }
 
 .analysis-text-section h3,
+.medgemma-analysis-section h3,
 .fhir-section h3,
 .storage-section h3 {
 	color: #000000;
@@ -3003,4 +3005,54 @@ color: #17a2b8;
         .contact-section {
                 padding: 1.5rem;
         }
+}
+
+/* MedGemma Analysis Section Styles */
+.medgemma-data {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+}
+
+.analysis-field {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+}
+
+.analysis-field strong {
+	color: #000000;
+	font-weight: 600;
+	font-size: 1rem;
+}
+
+.measurements {
+	display: flex;
+	flex-direction: row;
+	gap: 1rem;
+	margin-left: 1rem;
+}
+
+.measurements span {
+	color: #333333;
+	background: #f8f9fa;
+	padding: 0.25rem 0.75rem;
+	border-radius: 8px;
+	font-size: 0.9rem;
+}
+
+.recommendations-list {
+	margin: 0.5rem 0 0 1rem;
+	padding: 0;
+}
+
+.recommendations-list li {
+	color: #333333;
+	margin: 0.5rem 0;
+	line-height: 1.5;
+}
+
+.analysis-field:last-child {
+	color: #17a2b8;
+	font-weight: 600;
 }
