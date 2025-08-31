@@ -53,7 +53,7 @@ function ResultsScreen() {
 
 	if (!photoData) {
 		return (
-			<div className="results-screen">
+			<div className="results-screen gradient-background">
 				<header className="results-header">
 					<Link to="/photo-capture" className="back-button">← Back</Link>
 					<h1>Analysis Results</h1>
@@ -67,7 +67,7 @@ function ResultsScreen() {
 	}
 
 	return (
-		<div className="results-screen">
+		<div className="results-screen gradient-background">
 			<header className="results-header">
 				<Link to="/photo-capture" className="back-button">← Back</Link>
 				<h1>Analysis Results</h1>

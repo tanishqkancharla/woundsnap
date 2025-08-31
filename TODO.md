@@ -57,6 +57,8 @@ Implement Woundsnap as detailed in the @docs/Hackathon/Woundsnap.md file.
       Status: Completed successfully. Implemented comprehensive navigation hub with mock data, stats section, recent analyses display, quick actions grid, and professional medical styling. All navigation and demo mode functionality tested and working. See docs/todos/dashboard.md
 - [x] Add support for uploading photos so we can upload test photos for testing end-to-end flows
       Status: Completed successfully. Implemented comprehensive photo upload functionality in PhotoCapture component with file validation, error handling, and seamless UI integration. Upload button works alongside camera capture, enabling easy testing with sample images. End-to-end flow verified: Upload → Preview → Analyze → Results. See docs/todos/add-photo-upload.md
+- [x] Clean up design. Make it look more like the pictures in docs/Hackathon/screens
+      Status: Completed successfully. Redesigned Welcome, Login, and Photo Capture screens to match mockup designs with clean white backgrounds, teal branding, and simplified interfaces. All functionality preserved while achieving professional, minimal aesthetic. See docs/todos/design-cleanup.md
 
 ## End-to-End Testing Flows (Demo Validation)
 

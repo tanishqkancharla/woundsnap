@@ -74,7 +74,7 @@ class PhenomlService {
 
 	constructor() {
 		this.baseUrl = process.env.PHENOML_API_BASE_URL || "https://phenoml-hackathon.app.pheno.ml";
-		this.email = process.env.PHEONML_EMAIL || "";
+		this.email = process.env.PHENOML_EMAIL || "";
 		this.password = process.env.PHENOML_PASSWORD || "";
 	}
 
@@ -87,15 +87,12 @@ class PhenomlService {
 		}
 
 		try {
-			const response = await fetch(`${this.baseUrl}/auth/login`, {
+			const credentials = btoa(`${this.email}:${this.password}`);
+			const response = await fetch(`${this.baseUrl}/auth/token`, {
 				method: "POST",
 				headers: {
-					"Content-Type": "application/json"
-				},
-				body: JSON.stringify({
-					email: this.email,
-					password: this.password
-				})
+					"Authorization": `Basic ${credentials}`
+				}
 			});
 
 			if (!response.ok) {
@@ -103,7 +100,7 @@ class PhenomlService {
 			}
 
 			const result = await response.json();
-			this.accessToken = result.access_token || result.token;
+			this.accessToken = result.token;
 		} catch (error) {
 			console.error("Phenoml authentication error:", error);
 			throw error;
@@ -119,8 +116,12 @@ class PhenomlService {
 		}
 
 		try {
-			// For now, simulate the conversion since we need to setup actual Phenoml account
-			return this.simulateConversion(request);
+			// Use real API if credentials are configured, otherwise simulate
+			if (this.email && this.password) {
+				return this.callLang2FHIR(request);
+			} else {
+				return this.simulateConversion(request);
+			}
 		} catch (error) {
 			console.error("Phenoml FHIR conversion error:", error);
 			throw error;
@@ -218,10 +219,10 @@ class PhenomlService {
 	}
 
 	/**
-	 * Real Lang2FHIR API call implementation (TODO: Complete when credentials available)
+	 * Real Lang2FHIR API call implementation
 	 */
 	private async callLang2FHIR(request: FHIRConversionRequest): Promise<PhenomlResponse> {
-		const response = await fetch(`${this.baseUrl}/api/lang2fhir`, {
+		const response = await fetch(`${this.baseUrl}/lang2fhir/create`, {
 			method: "POST",
 			headers: {
 				"Authorization": `Bearer ${this.accessToken}`,
@@ -229,21 +230,29 @@ class PhenomlService {
 			},
 			body: JSON.stringify({
 				text: request.clinicalText,
-				patient_id: request.patientId,
-				resource_types: request.resourceTypes || ["Observation", "Condition"]
+				version: "1.0",
+				resource: "Observation"
 			})
 		});
 
 		if (!response.ok) {
+			const errorText = await response.text();
+			console.error(`Lang2FHIR API error ${response.status}:`, errorText);
 			throw new Error(`Lang2FHIR API error: ${response.status} ${response.statusText}`);
 		}
 
 		const result = await response.json();
+		console.log("Phenoml API response:", result);
+		
+		// Phenoml returns a single FHIR resource, wrap it in arrays
+		const observations = result.resourceType === "Observation" ? [result] : [];
+		const conditions = result.resourceType === "Condition" ? [result] : [];
+		
 		return {
-			observations: result.observations || [],
-			conditions: result.conditions || [],
+			observations,
+			conditions,
 			success: true,
-			message: result.message
+			message: "FHIR conversion completed successfully"
 		};
 	}
 

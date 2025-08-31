@@ -12,11 +12,99 @@ body {
 		sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+	background: #ffffff;
 	min-height: 100vh;
 }
 
-/* Welcome Screen Styles */
+/* Gradient backgrounds for non-mockup screens */
+.gradient-background {
+	background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+/* New Welcome Screen Styles - Matches Mockup */
+.welcome-screen-new {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+	background: #ffffff;
+}
+
+.welcome-teal-header {
+	background: #17a2b8;
+	border-radius: 0 0 25px 25px;
+	padding: 3rem 2rem 2rem 2rem;
+	text-align: center;
+	margin-bottom: 2rem;
+	box-shadow: 0 4px 15px rgba(23, 162, 184, 0.3);
+}
+
+.welcome-logo {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.75rem;
+	color: white;
+}
+
+.heart-icon {
+	font-size: 2rem;
+}
+
+.app-name {
+	font-size: 1.5rem;
+	font-weight: 600;
+}
+
+.welcome-content-card {
+	background: white;
+	border-radius: 16px;
+	margin: 0 2rem;
+	padding: 2.5rem;
+	text-align: center;
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.welcome-title {
+	color: #000000;
+	font-size: 2rem;
+	font-weight: 700;
+	margin: 0 0 1.5rem 0;
+	line-height: 1.2;
+}
+
+.welcome-description {
+	color: #333333;
+	font-size: 1.1rem;
+	line-height: 1.6;
+	margin: 0 0 2.5rem 0;
+	max-width: 400px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.welcome-proceed-button {
+	background: #17a2b8;
+	color: white;
+	text-decoration: none;
+	border-radius: 25px;
+	padding: 1rem 2rem;
+	font-size: 1.1rem;
+	font-weight: 600;
+	transition: all 0.2s;
+	display: inline-block;
+}
+
+.welcome-proceed-button:hover {
+	background: #138496;
+	transform: translateY(-2px);
+	box-shadow: 0 8px 20px rgba(23, 162, 184, 0.3);
+}
+
+/* Legacy Welcome Screen Styles (for non-mockup screens) */
 .welcome-screen {
 	max-width: 800px;
 	margin: 0 auto;
@@ -296,10 +384,147 @@ body {
 	transform: translateY(-2px);
 }
 
+/* New Login Screen Styles - Matches Mockup */
+.login-screen-new {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+	background: #ffffff;
+	padding: 2rem;
+}
+
+.login-form-container {
+	width: 100%;
+	max-width: 400px;
+	text-align: center;
+}
+
+.login-title {
+	color: #000000;
+	font-size: 2.5rem;
+	font-weight: 600;
+	margin: 0 0 2.5rem 0;
+}
+
+.login-form {
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
+}
+
+.login-input {
+	background: #ffffff;
+	border: 1px solid #dddddd;
+	border-radius: 25px;
+	padding: 1rem 1.5rem;
+	font-size: 1rem;
+	color: #333333;
+	outline: none;
+	transition: border-color 0.2s;
+}
+
+.login-input:focus {
+	border-color: #17a2b8;
+}
+
+.login-input::placeholder {
+	color: #999999;
+}
+
+.forgot-password {
+	text-align: right;
+	margin: -0.5rem 0;
+}
+
+.forgot-link {
+	color: #666666;
+	text-decoration: none;
+	font-size: 0.9rem;
+}
+
+.forgot-link:hover {
+	text-decoration: underline;
+}
+
+.login-button {
+	background: #17a2b8;
+	color: white;
+	border: none;
+	border-radius: 25px;
+	padding: 1rem 2rem;
+	font-size: 1.1rem;
+	font-weight: 600;
+	cursor: pointer;
+	transition: all 0.2s;
+}
+
+.login-button:hover:not(:disabled) {
+	background: #138496;
+	transform: translateY(-2px);
+	box-shadow: 0 8px 20px rgba(23, 162, 184, 0.3);
+}
+
+.login-button:disabled {
+	opacity: 0.6;
+	cursor: not-allowed;
+}
+
+.demo-link {
+	color: #17a2b8;
+	text-decoration: none;
+	font-size: 0.9rem;
+	margin-top: 0.5rem;
+}
+
+.demo-link:hover {
+	text-decoration: underline;
+}
+
+.login-error {
+	background: #f8d7da;
+	border: 1px solid #f5c6cb;
+	color: #721c24;
+	border-radius: 8px;
+	padding: 1rem;
+	margin-top: 1rem;
+	text-align: left;
+}
+
 /* Mobile responsiveness */
 @media (max-width: 768px) {
 	.welcome-screen {
 		padding: 1rem;
+	}
+	
+	.welcome-screen-new {
+		padding: 1rem;
+	}
+	
+	.welcome-content-card {
+		margin: 0 1rem;
+		padding: 2rem;
+	}
+	
+	.login-screen-new {
+		padding: 1rem;
+	}
+	
+	.photo-capture-new {
+		padding: 1rem;
+	}
+	
+	.photo-capture-container {
+		max-width: 100%;
+	}
+	
+	.camera-icon {
+		font-size: 5rem;
+	}
+	
+	.photo-capture-title {
+		font-size: 1.5rem;
 	}
 	
 	.app-title {
@@ -335,7 +560,6 @@ body {
 /* Dashboard Styles */
 .dashboard {
 	min-height: 100vh;
-	background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 	display: flex;
 	flex-direction: column;
 }
@@ -916,9 +1140,8 @@ body {
 	100% { transform: rotate(360deg); }
 }
 
-/* Photo Capture Screen Styles */
+/* Photo Capture Screen Styles (Legacy) */
 .photo-capture {
-	background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 	min-height: 100vh;
 	display: flex;
 	flex-direction: column;
@@ -1101,7 +1324,195 @@ body {
 }
 
 .capture-tips {
-	color: rgba(255, 255, 255, 0.8);
-	padding: 0 1.5rem;
-	margin-bottom: 2rem;
+color: rgba(255, 255, 255, 0.8);
+padding: 0 1.5rem;
+margin-bottom: 2rem;
+}
+
+/* New Photo Capture Screen Styles - Matches Mockup */
+.photo-capture-new {
+	background: #ffffff;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 2rem;
+}
+
+.photo-capture-container {
+	width: 100%;
+	max-width: 500px;
+	text-align: center;
+}
+
+.photo-capture-title {
+	color: #000000;
+	font-size: 2rem;
+	font-weight: 600;
+	margin: 0 0 2rem 0;
+}
+
+.camera-illustration {
+	margin: 2rem 0;
+}
+
+.camera-icon {
+	font-size: 8rem;
+	color: #333333;
+}
+
+.capture-instructions {
+	text-align: left;
+	margin: 2rem 0;
+	color: #333333;
+}
+
+.capture-instructions p {
+	font-weight: 600;
+	margin: 0 0 1rem 0;
+	font-size: 1.1rem;
+}
+
+.capture-instructions ul {
+	margin: 0;
+	padding-left: 1.5rem;
+	line-height: 1.6;
+}
+
+.capture-instructions li {
+	margin-bottom: 0.5rem;
+	font-size: 1rem;
+}
+
+.notes-section {
+	margin: 2rem 0;
+}
+
+.wound-notes-input {
+	width: 100%;
+	border: 1px solid #dddddd;
+	border-radius: 8px;
+	padding: 1rem;
+	font-size: 1rem;
+	color: #333333;
+	resize: vertical;
+	outline: none;
+	transition: border-color 0.2s;
+	background: #ffffff;
+}
+
+.wound-notes-input:focus {
+	border-color: #17a2b8;
+}
+
+.wound-notes-input::placeholder {
+	color: #999999;
+}
+
+.photo-preview-new {
+	margin: 1rem 0;
+	text-align: center;
+}
+
+.preview-image {
+	max-width: 100%;
+	max-height: 300px;
+	border-radius: 8px;
+	border: 1px solid #dddddd;
+}
+
+.retake-button {
+	background: #6c757d;
+	color: white;
+	border: none;
+	border-radius: 20px;
+	padding: 0.5rem 1rem;
+	font-size: 0.9rem;
+	margin-top: 0.5rem;
+	cursor: pointer;
+	transition: background 0.2s;
+}
+
+.retake-button:hover {
+	background: #545b62;
+}
+
+.capture-error {
+	background: #f8d7da;
+	border: 1px solid #f5c6cb;
+	color: #721c24;
+	border-radius: 8px;
+	padding: 1rem;
+	margin: 1rem 0;
+}
+
+.capture-button-section {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	margin-top: 2rem;
+}
+
+.photo-capture-button {
+	background: #000000;
+	color: white;
+	border: none;
+	border-radius: 25px;
+	padding: 1rem 2rem;
+	font-size: 1.1rem;
+	font-weight: 600;
+	cursor: pointer;
+	transition: all 0.2s;
+}
+
+.photo-capture-button:hover:not(:disabled) {
+	background: #333333;
+	transform: translateY(-2px);
+	box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.photo-capture-button:disabled {
+	opacity: 0.6;
+	cursor: not-allowed;
+}
+
+.upload-photo-button {
+	background: #6c757d;
+	color: white;
+	border: none;
+	border-radius: 25px;
+	padding: 0.75rem 1.5rem;
+	font-size: 1rem;
+	font-weight: 500;
+	cursor: pointer;
+	transition: all 0.2s;
+}
+
+.upload-photo-button:hover:not(:disabled) {
+	background: #545b62;
+	transform: translateY(-1px);
+}
+
+.upload-photo-button:disabled {
+	opacity: 0.6;
+	cursor: not-allowed;
+}
+
+.analyze-button {
+	background: #17a2b8;
+	color: white;
+	border: none;
+	border-radius: 25px;
+	padding: 1rem 2rem;
+	font-size: 1.1rem;
+	font-weight: 600;
+	cursor: pointer;
+	transition: all 0.2s;
+}
+
+.analyze-button:hover {
+	background: #138496;
+	transform: translateY(-2px);
+	box-shadow: 0 8px 20px rgba(23, 162, 184, 0.3);
 }

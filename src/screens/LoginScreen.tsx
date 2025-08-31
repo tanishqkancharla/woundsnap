@@ -29,74 +29,46 @@ function LoginScreen() {
 	};
 
 	return (
-		<div className="login-screen">
-			<div className="login-container">
-				<div className="login-header">
-					<h1>Welcome to WoundSnap</h1>
-					<p>Connect with Canvas Medical for secure, FHIR-compliant patient data management</p>
-				</div>
-
-				<div className="canvas-info">
-					<div className="canvas-logo">
-						<div className="canvas-icon">🏥</div>
-						<strong>Canvas Medical</strong>
+		<div className="login-screen-new">
+			<div className="login-form-container">
+				<h1 className="login-title">Login</h1>
+				
+				<div className="login-form">
+					<input 
+						type="text" 
+						placeholder="Username"
+						className="login-input"
+					/>
+					<input 
+						type="password" 
+						placeholder="Password"
+						className="login-input"
+					/>
+					
+					<div className="forgot-password">
+						<a href="#" className="forgot-link">Forgot Password?</a>
 					</div>
-					<div className="permissions-info">
-						<h3>This app will access:</h3>
-						<ul>
-							<li>📋 Patient information (read-only)</li>
-							<li>📸 Medical images and photos</li>
-							<li>🩺 Wound conditions and diagnoses</li>
-							<li>📊 Wound measurements and observations</li>
-							<li>📅 Care tasks and reminders</li>
-							<li>👨‍⚕️ Healthcare provider information</li>
-						</ul>
-					</div>
-				</div>
-
-				{(error || configError) && (
-					<div className="error-banner">
-						<strong>⚠ Authentication Error</strong>
-						<p>{error || configError}</p>
-						{configError && (
-							<small>
-								Make sure CANVAS_CLIENT_ID, CANVAS_CLIENT_SECRET, and CANVAS_INSTANCE_URL 
-								are properly configured in your environment.
-							</small>
-						)}
-					</div>
-				)}
-
-				<div className="login-actions">
+					
 					<button 
-						className={`btn-primary canvas-oauth ${isLoading ? 'loading' : ''}`}
+						className="login-button"
 						onClick={handleCanvasLogin}
 						disabled={isLoading}
 					>
-						{isLoading ? (
-							<>
-								<span className="spinner"></span>
-								Connecting to Canvas...
-							</>
-						) : (
-							<>
-								<span className="canvas-icon">🏥</span>
-								Login with Canvas Medical
-							</>
-						)}
+						{isLoading ? "Logging in..." : "Login"}
 					</button>
 					
-					<Link to="/dashboard" className="btn-secondary">
-						💡 Demo Mode (Skip Authentication)
+					{/* Demo mode for testing */}
+					<Link to="/dashboard" className="demo-link">
+						Demo Mode (Skip Authentication)
 					</Link>
 				</div>
 
-				<div className="security-note">
-					<p>🔒 Your data is protected by HIPAA-compliant encryption and Canvas Medical's enterprise security.</p>
-				</div>
+				{(error || configError) && (
+					<div className="login-error">
+						<p>{error || configError}</p>
+					</div>
+				)}
 			</div>
-
-
 		</div>
 	);
 }

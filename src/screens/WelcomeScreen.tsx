@@ -78,117 +78,25 @@ function WelcomeScreen() {
 	const canProceed = permissions.camera === "granted";
 
 	return (
-		<div className="welcome-screen">
-			<div className="welcome-header">
-				<h1 className="app-title">WoundSnap</h1>
-				<p className="app-subtitle">AI-powered wound care analysis</p>
-			</div>
-
-			<div className="welcome-features">
-				<div className="feature-card">
-					<div className="feature-icon">🔬</div>
-					<h3>AI Analysis</h3>
-					<p>Advanced medical imaging AI identifies wound dimensions, tissue types, and healing stages</p>
-				</div>
-				<div className="feature-card">
-					<div className="feature-icon">📋</div>
-					<h3>FHIR Compliant</h3>
-					<p>Automatic medical documentation ready for any EHR system (Epic, Cerner, etc.)</p>
-				</div>
-				<div className="feature-card">
-					<div className="feature-icon">👩‍⚕️</div>
-					<h3>Clinical Workflow</h3>
-					<p>Smart care coordination with automated provider alerts and treatment plans</p>
+		<div className="welcome-screen-new">
+			<div className="welcome-teal-header">
+				<div className="welcome-logo">
+					<span className="heart-icon">🤍</span>
+					<span className="app-name">WoundSnap Lite</span>
 				</div>
 			</div>
 
-			<div className="permissions-section">
-				<h2>Required Permissions</h2>
-				<p className="permissions-description">
-					For the best experience, WoundSnap needs access to certain device features. Your privacy and security are our top priorities.
+			<div className="welcome-content-card">
+				<h1 className="welcome-title">Welcome to WoundSnap Lite</h1>
+				<p className="welcome-description">
+					Effortlessly track and manage wound healing progress with WoundSnap Lite. Your journey to better wound care begins here.
 				</p>
 				
-				<div className="permission-cards">
-					<div className="permission-card">
-						<div className="permission-header">
-							<div className="permission-icon">📷</div>
-							<div className="permission-info">
-								<h3>Camera Access</h3>
-								<p>Required to capture wound photographs for AI analysis</p>
-							</div>
-							<div className={`permission-status ${getPermissionStatus("camera").className}`}>
-								{getPermissionStatus("camera").icon} {getPermissionStatus("camera").text}
-							</div>
-						</div>
-						{permissions.camera === "prompt" && (
-							<button 
-								className="permission-button"
-								onClick={requestCameraPermission}
-								disabled={isCheckingPermissions}
-							>
-								{isCheckingPermissions ? "Requesting..." : "Enable Camera"}
-							</button>
-						)}
-						{permissions.camera === "denied" && (
-							<p className="permission-help">
-								Please enable camera access in your browser settings to use WoundSnap
-							</p>
-						)}
-						{permissions.camera === "unsupported" && (
-							<p className="permission-help">
-								Camera access is not supported in this browser. Please use a modern browser like Chrome, Firefox, or Safari.
-							</p>
-						)}
-					</div>
-
-					<div className="permission-card optional">
-						<div className="permission-header">
-							<div className="permission-icon">🔔</div>
-							<div className="permission-info">
-								<h3>Notifications <span className="optional-badge">Optional</span></h3>
-								<p>For follow-up reminders and treatment alerts</p>
-							</div>
-							<div className={`permission-status ${getPermissionStatus("notifications").className}`}>
-								{getPermissionStatus("notifications").icon} {getPermissionStatus("notifications").text}
-							</div>
-						</div>
-						{permissions.notifications === "prompt" && (
-							<button 
-								className="permission-button secondary"
-								onClick={requestNotificationPermission}
-							>
-								Enable Notifications
-							</button>
-						)}
-					</div>
-				</div>
-			</div>
-
-			<div className="privacy-section">
-				<div className="privacy-badge">
-					<span className="privacy-icon">🔒</span>
-					<div className="privacy-text">
-						<strong>HIPAA Compliant</strong>
-						<p>Your medical data is encrypted and secure</p>
-					</div>
-				</div>
-			</div>
-
-			<div className="welcome-actions">
 				<Link 
 					to="/login" 
-					className={`btn-primary ${!canProceed ? 'btn-disabled' : ''}`}
-					onClick={(e) => {
-						if (!canProceed) {
-							e.preventDefault();
-							alert("Camera access is required to use WoundSnap. Please enable camera permissions to continue.");
-						}
-					}}
+					className="welcome-proceed-button"
 				>
-					{canProceed ? "Get Started" : "Camera Required"}
-				</Link>
-				<Link to="/support" className="btn-secondary">
-					Learn More
+					Proceed to Login / Create Account
 				</Link>
 			</div>
 		</div>
